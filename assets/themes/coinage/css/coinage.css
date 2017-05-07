@@ -1,0 +1,46 @@
+/*
+Error: Invalid CSS after "...trap/variables"": expected "{", was ";"
+        on line 5 of assets/themes/coinage/sass/coinage.scss
+
+1: ---
+2: ---
+3: 
+4: // Core variables and mixins
+5: @import "bootstrap/variables";
+6: @import "bootstrap/mixins";
+7: 
+8: // Reset and dependencies
+9: @import "bootstrap/normalize";
+10: @import "bootstrap/print";
+
+Backtrace:
+assets/themes/coinage/sass/coinage.scss:5
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:1161:in `expected'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:1097:in `expected'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:1092:in `tok!'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:637:in `block'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:631:in `ruleset'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:656:in `block_child'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:646:in `block_contents'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:117:in `stylesheet'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:42:in `parse'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/engine.rb:403:in `_to_tree'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/engine.rb:378:in `_render_with_sourcemap'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/engine.rb:295:in `render_with_sourcemap'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/plugin/compiler.rb:209:in `each'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/plugin/compiler.rb:470:in `on_file_changed'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/sass-3.4.19/lib/sass/plugin/compiler.rb:328:in `block in watch'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/listen-2.10.1/lib/listen/listener.rb:305:in `call'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/listen-2.10.1/lib/listen/listener.rb:305:in `_process_changes'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/listen-2.10.1/lib/listen/listener.rb:269:in `block in _wait_for_changes'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/listen-2.10.1/lib/listen/listener.rb:252:in `loop'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/listen-2.10.1/lib/listen/listener.rb:252:in `_wait_for_changes'
+/Users/blinktrade/.rvm/gems/ruby-2.2.0/gems/listen-2.10.1/lib/listen/listener.rb:341:in `block in _start_wait_thread'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"...trap/variables\"\": expected \"{\", was \";\"\A         on line 5 of assets/themes/coinage/sass/coinage.scss\A \A 1: ---\A 2: ---\A 3: \A 4: // Core variables and mixins\A 5: @import \"bootstrap/variables\";\A 6: @import \"bootstrap/mixins\";\A 7: \A 8: // Reset and dependencies\A 9: @import \"bootstrap/normalize\";\A 10: @import \"bootstrap/print\";"; }

@@ -1,0 +1,143 @@
+{namespace bitex.ui.OrderBook.templates}
+
+/**
+  * @param title
+  * @param columns
+  */
+{template .OrderBook}
+<div class="box box--history box--push-bottom">
+    <!-- .box__head -->
+    {if $title == 'ASK' }
+      <div class="btn-group pull-right" style="margin-top:3px;margin-right:3px;">
+        {call .ShowCumQty}{/call}
+        {call .ShowFees}{/call}
+      </div>
+    {/if}
+    <header class="box__head">
+        {$title}
+    </header>
+    <!-- /.box__head -->
+
+    <!-- .box__body -->
+    <div class="box__body box__body--slide-x">
+        <!-- .table -->
+        <table class="table table--bordered table--striped">
+            <thead>
+              <tr>
+                {foreach $column in $columns}
+                  <th>{$column}</th>
+                {/foreach}
+              </tr>
+            </thead>
+
+            <tbody></tbody>
+        </table>
+    </div>
+    <!-- /.box__body -->
+</div>
+{/template}
+
+/**
+ */
+{template .ShowCumQty}
+  <div style="padding:2px" class="btn btn-mini btn-default btn-show-cum-qty">
+    {msg desc="Cumulative"}Cumulative{/msg}
+  </div>
+{/template}
+
+/**
+ */
+{template .ShowFees}
+  <div style="padding:2px" class="btn btn-mini btn-default btn-show-fees">
+    {msg desc="Fees"}Fees{/msg}
+  </div>
+{/template}
+
+/**
+  *
+  */
+{template .OrderBookDragOrder}
+  <div class="order-book-drag-order">
+     {msg desc="Caption shown when user is drag & dropping an order in the order book"}Cancel/Replace Order{/msg}
+  </div>
+{/template}
+
+
+/**
+  * @param qty
+  */
+{template .OrderBookOrderQtyEl}
+  <td class="order-book-qty">{$qty}</td>
+{/template}
+
+
+/**
+  * @param price
+  * @param side
+  */
+{template .OrderBookOrderPriceEl}
+  <td class="order-book-price {if $side=='0'}order-book-right{else}order-book-left{/if}">{$price}</td>
+{/template}
+
+/**
+  * @param username
+  * @param side
+  * @param? orderId
+  */
+{template .OrderBookOrderUsernameEl}
+  {if $orderId}
+    <td class="order-book-username {if $side=='0'}order-book-left{else}order-book-right{/if}">
+      <a href="" class="btn-cancel-order text-error" data-order-id="{$orderId}">
+        {if $side=='0'}
+          <i class="icon-remove" data-order-id="{$orderId}" style="line-height:2px;"></i>
+          {sp}{$username}
+        {else}
+          {$username}{sp}
+          <i class="icon-remove" data-order-id="{$orderId}" style="line-height:2px;"></i>
+        {/if}
+      </a>
+    </td>
+  {else}
+    <td class="order-book-username {if $side=='0'}order-book-left{else}order-book-right{/if}">{$username}</td>
+  {/if}
+{/template}
+
+/**
+  * @param username
+  * @param qty
+  * @param price
+  * @param side
+  * @param? orderId
+  */
+{template .OrderBookOrderRow}
+  <tr class="order-book-row">
+    {if $side=='0'}
+      {call .OrderBookOrderUsernameEl}
+        {param username: $username /}
+        {param side: $side /}
+        {param orderId: $orderId /}
+      {/call}
+      {call .OrderBookOrderQtyEl}
+        {param qty: $qty /}
+      {/call}
+      {call .OrderBookOrderPriceEl}
+        {param price: $price /}
+        {param side: $side /}
+      {/call}
+    {else}
+      {call .OrderBookOrderPriceEl}
+        {param price: $price /}
+        {param side: $side /}
+      {/call}
+      {call .OrderBookOrderQtyEl}
+        {param qty: $qty /}
+      {/call}
+      {call .OrderBookOrderUsernameEl}
+        {param username: $username /}
+        {param side: $side /}
+        {param orderId: $orderId /}
+      {/call}
+    {/if}
+  </tr>
+{/template}
+

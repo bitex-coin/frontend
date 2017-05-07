@@ -1,0 +1,44 @@
+{namespace bitex.ui.market_view_table.templates}
+
+
+/**
+  * @param id
+  * @param instruments
+  */
+{template .MarketViewTable}
+
+  <div class="row-fluid">
+    <div class="span12">
+      <table id="{$id}_table" class="ls-table ls-table-striped ls-bg-header">
+          <thead>
+            <tr>
+                <th> {msg desc="Method field header"}Pair{/msg}</th>
+                <th> {msg desc="Method field header"}Last{/msg} </th>
+                <th> {msg desc="Method field header"}Bid{/msg} </th>
+                <th> {msg desc="Method field header"}Ask{/msg} </th>
+                <th> {msg desc="Method field header"}Volume (BTC){/msg} </th>
+                <th> {msg desc="Method field header"}Volume{/msg} </th>
+                <th> {msg desc="Method field header"}High{/msg} </th>
+                <th> {msg desc="Method field header"}Low{/msg} </th>
+            </tr>
+          </thead>
+          <tbody>
+            {foreach $inst in $instruments}
+                <tr data-symbol="{$inst['Symbol']}" >
+                <td>{$inst['Description']} </td>
+                <td><span class="bitex-model" data-model-key="formatted_{$inst['Market']}_{$inst['Symbol']}_LAST_PX"></span></td>
+                <td><span class="bitex-model" data-model-key="formatted_{$inst['Market']}_{$inst['Symbol']}_BEST_BID"></span></td>
+                <td><span class="bitex-model" data-model-key="formatted_{$inst['Market']}_{$inst['Symbol']}_BEST_ASK"></span></td>
+                <td><span class="bitex-model" data-model-key="formatted_{$inst['Market']}_{$inst['Symbol']}_SELL_VOLUME"></span></td>
+                <td><span class="bitex-model" data-model-key="formatted_{$inst['Market']}_{$inst['Symbol']}_BUY_VOLUME"></span></td>
+                <td><span class="bitex-model" data-model-key="formatted_{$inst['Market']}_{$inst['Symbol']}_HIGH_PX"></span></td>
+                <td><span class="bitex-model" data-model-key="formatted_{$inst['Market']}_{$inst['Symbol']}_LOW_PX"></span></td>
+                </tr>
+            {/foreach}
+          </tbody>
+      </table>
+
+    </div>
+  </div>
+
+{/template}

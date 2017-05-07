@@ -1,0 +1,30 @@
+{namespace bitex.ui.DepositWithdrawButtonGroup.templates}
+
+/**
+  * @param id
+  * @param buttons
+  */
+{template .DepositWithdrawButtonGroup}
+  <div id="{$id}" class="deposit-withdraw-button-group" >
+    {foreach $button in $buttons}
+      <button class="btn btn-primary btn-md text-center" 
+              data-currency="{$button['currency']}" 
+              data-action="{$button['mode']}">
+              {if $button['mode'] == 'deposit'} 
+                <strong>{$button['currencySign']}</strong>
+                {sp}
+                {msg desc="Button caption label on deposit button in the deposit view"}Deposit {$button['currencyDescription']}{/msg}
+                {sp}
+                <span class="fa fa-download"></span>
+              {else}
+                <strong>{$button['currencySign']}</strong>
+                {sp}
+                {msg desc="Button caption label on withdraw button in the withdraw view"}Withdraw {$button['currencyDescription']}{/msg}
+                {sp}
+                <span class="fa fa-upload"></span>
+              {/if}
+      </button>&nbsp;
+    {/foreach}
+  </div>
+{/template}
+

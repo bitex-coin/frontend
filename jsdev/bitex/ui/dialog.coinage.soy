@@ -1,0 +1,20 @@
+{namespace bitex.ui.Dialog.templates}
+
+/**
+  * @param id
+  * @param title
+  */
+{template .Dialog}
+<div id="{$id}" class="modal fade" role="dialog" tabindex="-1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" >{$title}</h4>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>
+{/template}

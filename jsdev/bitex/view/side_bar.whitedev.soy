@@ -1,0 +1,109 @@
+{namespace bitex.view.SideBarView.templates}
+
+/**
+  * @param pattern
+  * @param desc
+  * @param variables
+  * @param formula
+  */
+{template .YourAccountPortfolioValue}
+  <td style="padding: 4px;">
+    <small>
+      <i>
+        <abbr title="{msg desc="Approx. balance help message in the Your Balance widget in the Sidebar"}
+            Your total balance in {$desc} according to the most recent trade.
+            This value varies according to the market. Be advised that this value doesn't represent
+            your total balance or any commitment to the exchange rate.
+          {/msg}">
+          {msg desc="Approx. balance title in the Your Balance widget in the Sidebar"}Approx. value{/msg}
+        </abbr>
+      </i>
+    </small>
+  </td>
+  <td>
+    <i>
+      <span class="bitex-model"
+            data-model-key-list="{$variables}"
+            data-model-formula="{$formula}"
+            data-model-formatter="currency"
+            data-model-formatter-pattern="{$pattern}"
+            data-blink-class="balance-info-blink">
+      </span>
+    </i>
+  </td>
+  <td></td>
+{/template}
+
+/**
+  * @param id
+  * @param boxes
+  */
+{template .YourAccountSummary}
+  {foreach $box in $boxes}
+    <table class="account-summary-table" style="width:100%;border-bottom:1px solid #eee;margin-top:15px;">
+      <tbody>
+
+        <tr class='account-summary-broker'>
+          <td colspan="3"><strong>{$box['title']}</strong></td>
+        </tr>
+
+        {foreach $balance_info in $box['balances']}
+          <tr style="height:30px">
+            <td>
+              <strong>{$balance_info['currency']}</strong>
+            </td>
+
+            <td style="text-align:right;white-space:nowrap">
+              <span class="bitex-model" style="font-size: 14px"
+                    data-model-key-list="Balance_{$balance_info['brokerID']}_{$balance_info['accountID']}_{$balance_info['currency']}"
+                    data-model-formula="Balance_{$balance_info['brokerID']}_{$balance_info['accountID']}_{$balance_info['currency']} / 100000000"
+                    data-model-formatter="currency"
+                    data-model-formatter-pattern="{$balance_info['currencyPattern']}"
+                    data-blink-class="balance-info-blink"></span>
+
+                {sp}<br><abbr title="{msg desc="Unconfirmed deposits"}Unconfirmed deposits{/msg}"
+                        class="bitex-model" style="font-size: 12px"
+                        data-model-action="show_element"
+                        data-model-key-list="Position_{$balance_info['brokerID']}_{$balance_info['accountID']}_{$balance_info['currency']}"
+                        data-model-formula="Position_{$balance_info['brokerID']}_{$balance_info['accountID']}_{$balance_info['currency']}">
+                <small>
+                  <span class="bitex-model"
+                        data-model-key-list="Position_{$balance_info['brokerID']}_{$balance_info['accountID']}_{$balance_info['currency']}"
+                        data-model-formula="Position_{$balance_info['brokerID']}_{$balance_info['accountID']}_{$balance_info['currency']} / 100000000"
+                        data-model-formatter="currency"
+                        data-model-formatter-pattern="{$balance_info['currencyPattern']}"
+                        data-blink-class="balance-info-blink"></span>
+                </small>
+              </abbr>
+
+           </td>
+           <td>
+
+              {if $balance_info['showDeposit'] and  $balance_info['showWithdraw']}
+                <div class="btn-group">
+              {/if}
+
+              {if $balance_info['showDeposit'] }
+                <a class="flaticon-download164 b" data-action="deposit" data-currency="{$balance_info['currency']}">
+                </a>
+              {/if}
+              {if $balance_info['showWithdraw'] }
+                <a class="flaticon-upload119 b" data-action="withdraw" data-currency="{$balance_info['currency']}">
+                </a>
+              {/if}
+
+              {if $balance_info['showDeposit'] and  $balance_info['showWithdraw']}
+                </div>
+              {/if}
+
+            </td>
+          </tr>
+        {/foreach}
+
+        <tr id="{$id}_portfolio_value">
+        </tr>
+
+      </tbody>
+    </table>
+  {/foreach}
+{/template}
