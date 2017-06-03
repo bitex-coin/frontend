@@ -983,9 +983,11 @@ bitex.app.BlinkTrade.prototype.onUpdateBalance_ = function(e) {
   }
 
   var broker = this.getModel().get('Broker');
-  goog.array.forEach(broker['CryptoCurrencies'], function(broker_crypto_currency_info) {
-    this.calculatePortfolioValue(broker_crypto_currency_info['CurrencyCode']);
-  }, this);
+  if (!goog.isDefAndNotNull(broker)){
+    goog.array.forEach(broker['CryptoCurrencies'], function(broker_crypto_currency_info) {
+      this.calculatePortfolioValue(broker_crypto_currency_info['CurrencyCode']);
+    }, this);
+  }
 };
 
 bitex.app.BlinkTrade.prototype.onBitexWithdrawConfirmationResponse_ = function(e) {
