@@ -707,6 +707,7 @@ bitex.app.BlinkTrade.prototype.onBitexSecurityStatus_ = function(e) {
   var model = this.getModel();
   var currency = msg["Symbol"].substr(3);
   var crypto_currency = msg["Symbol"].substr(0,3);
+  console.log("Symbol: ", msg["Symbol"], " currency: ", currency, " crypto_currency: ", crypto_currency);
 
   var vwap = parseInt(msg["BuyVolume"]/msg["SellVolume"] * 1.e8,10);
   if ('VWAP' in msg) {
