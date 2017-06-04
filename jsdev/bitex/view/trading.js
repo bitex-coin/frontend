@@ -167,6 +167,14 @@ bitex.view.TradingView.prototype.recreateComponents_ = function( selected_symbol
 
   this.destroyComponents_();
 
+  var fee = 0;
+  var formated_fee = 0;
+  var broker = model.get('Broker');
+
+  if (goog.isDefAndNotNull(broker)){
+    fee = broker['TakerTransactionFeeBuy'];
+    formated_fee = broker['FormattedTakerTransactionFeeBuy'];
+  }
 
   this.bid_order_entry_ = new bitex.ui.SimpleOrderEntry();
   this.bid_order_entry_.setModel( {
@@ -184,11 +192,16 @@ bitex.view.TradingView.prototype.recreateComponents_ = function( selected_symbol
     currency_format:this.getApplication().getCurrencyHumanFormat(selected_symbol.symbol.substr(3)),
     crypto_currency_code: selected_symbol.symbol.substr(0,3),
     crypto_currency_format:this.getApplication().getCurrencyHumanFormat(selected_symbol.symbol.substr(0,3)),
-    fee: model.get('Broker')['TakerTransactionFeeBuy'],
-    formatted_fee: model.get('Broker')['FormattedTakerTransactionFeeBuy']
+    fee: fee,
+    formatted_fee: formated_fee
   });
   this.addChild(this.bid_order_entry_, true);
 
+
+  if (goog.isDefAndNotNull(broker)){
+    fee = broker['TakerTransactionFeeSell'];
+    formated_fee = broker['FormattedTakerTransactionFeeSell'];
+  }
 
   this.ask_order_entry_ = new bitex.ui.SimpleOrderEntry();
   this.ask_order_entry_.setModel({
@@ -206,8 +219,8 @@ bitex.view.TradingView.prototype.recreateComponents_ = function( selected_symbol
     currency_format:this.getApplication().getCurrencyHumanFormat(selected_symbol.symbol.substr(3)),
     crypto_currency_code: selected_symbol.symbol.substr(3,3),
     crypto_currency_format:this.getApplication().getCurrencyHumanFormat(selected_symbol.symbol.substr(3,3)),
-    fee: model.get('Broker')['TakerTransactionFeeBuy'],
-    formatted_fee: model.get('Broker')['FormattedTakerTransactionFeeSell']
+    fee: fee,
+    formatted_fee: formated_fee
   });
   this.addChild(this.ask_order_entry_, true);
 
