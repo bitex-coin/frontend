@@ -1,0 +1,115 @@
+---
+layout: null
+---
+
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <link href="{{ site.url }}{{ site.baseurl }}/assets/themes/default/css/style-new.css?v={{ site.deploy_version }}" rel="stylesheet">
+    <script type='text/javascript' src='//code.jquery.com/jquery-1.9.1.js'></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+
+
+    <script type='text/javascript'>//<![CDATA[
+
+    $(function() {
+
+        var symbol = window.location.search.substring(1);
+        symbol=symbol.replace("s=",""); // removes s=
+
+        var crypto_currency = symbol.substr(0, 3);
+        var currency = symbol.substr(3);
+
+        var now = new Date();
+        var twenty_fours_ago = now.getTime()/1000  - (60 * 60 * 24 * 1);
+
+        var limit = 500;
+        var url = '//api.blinktrade.com/api/v1/' + currency + '/trades?limit=' + limit  + '&crypto_currency=' + crypto_currency + '&since=' + twenty_fours_ago;
+
+        var prices = [],volume = [];
+
+        function onFetchTrades(data) {
+          $.each(data, function( index, value ) {
+            var date = value.date*1000;
+            prices.push([date, value.price]);
+            volume.push([date, value.amount]);
+          });
+
+          if (data.length == limit) {
+            var since = data[limit-1].tid;
+            var url = '//api.blinktrade.com/api/v1/' + currency + '/trades?limit=' + limit  + '&crypto_currency=' + crypto_currency + '&since=' + since;
+
+            $.ajax({url: url,
+                   type: 'GET',
+                   dataType: 'jsonp',
+                   error: function() { alert('Failed!'); },
+                   success: onFetchTrades });
+
+            return;
+          }
+
+          $('#container').highcharts('StockChart', {
+           rangeSelector : {
+             selected : 1,
+             inputEnabled: true
+           },
+           yAxis: [{
+             labels: {
+               align: 'right',
+               x: -3
+             },
+             title: {
+               text: 'Price'
+             },
+             height: '60%',
+             lineWidth: 2
+           }, {
+             labels: {
+               align: 'right',
+               x: -3
+             },
+             title: {
+               text: 'Volume'
+             },
+             top: '65%',
+             height: '35%',
+             offset: 0,
+             lineWidth: 2
+           }],
+           series : [{
+             name : symbol,
+             data : prices,
+             tooltip: {
+               valueDecimals: 2
+             }
+           },
+             {
+               name : 'Volume',
+               type: 'column',
+               data : volume,
+               yAxis: 1
+             }
+           ]
+          });
+        }
+
+        $.ajax({url: url,
+               type: 'GET',
+               dataType: 'jsonp',
+               error: function() { alert('Failed!'); },
+               success: onFetchTrades });
+    });
+
+    //]]>
+
+    </script>
+
+  </head>
+
+  <body>
+  <div id="container" style="height: 400px; min-width: 310px"></div>
+  </body>
+
+</html>

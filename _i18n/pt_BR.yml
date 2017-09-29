@@ -6,6 +6,12 @@ global:
   about: About
   twitter: Twitter
 exchanges:
+  bitex:
+    title: BitEX - REAL open source exchange
+    description: Bolsa Brasileira de Moedas criptografadas
+    keywords: bitcoin, bitcoin exchange, open source bitcoin exchange, bitcoin trading plataform, open source bitcoin trading plataform
+    lead: The first real open source exchange
+
   demo:
     title: BlinkDemo - Open Source Bitcoin Exchange demo website
     description: Open Source Bitcoin Exchange demo website
