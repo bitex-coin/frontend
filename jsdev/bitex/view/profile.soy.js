@@ -1,4 +1,4 @@
-// This file was automatically generated from profile.default.soy.
+// This file was automatically generated from profile.coinage.soy.
 // Please don't edit this file by hand.
 
 goog.provide('bitex.view.ProfileView.templates');
@@ -7,7 +7,7 @@ goog.require('soy');
 
 
 bitex.view.ProfileView.templates.ProfileViewChangePasswordPlaceHolder = function(opt_data) {
-  return '<div class="span6 well"></div>';
+  return '<div class="col-xs-12 col-md-6 page__section_white page__padding profile__change_password"></div>';
 };
 
 
@@ -39,8 +39,8 @@ bitex.view.ProfileView.templates.AccountOverviewUser = function(opt_data) {
   /** @desc label on  overview header */
   var MSG_UNNAMED_130 = goog.getMsg('Email preferred language');
   /** @desc Confirmation Order */
-  var MSG_UNNAMED_132 = goog.getMsg('Should confirm new orders?');
-  output += '<table class="table table-striped table-condensed account-overview-table"><tbody><tr><td><strong>' + MSG_UNNAMED_110 + '</strong></td><td>' + soy.$$escapeHtml(opt_data.msg_customer_detail['ID']) + '</td></tr><tr><td><strong>' + MSG_UNNAMED_112 + '</strong></td><td>' + soy.$$escapeHtml(opt_data.msg_customer_detail['Username']) + '</td></tr><tr><td><strong>' + MSG_UNNAMED_114 + '</strong></td><td>' + soy.$$escapeHtml(opt_data.msg_customer_detail['Email']) + '</td></tr><tr><td><strong>' + MSG_UNNAMED_116 + '</strong></td><td class="account-overview-val account-overview-verified">';
+  var MSG_UNNAMED_132 = goog.getMsg('Confirmation Order');
+  output += '<table class="profile-table table page__section_white"><tbody><tr><td><strong>' + MSG_UNNAMED_110 + '</strong></td><td>' + soy.$$escapeHtml(opt_data.msg_customer_detail['ID']) + '</td></tr><tr><td><strong>' + MSG_UNNAMED_112 + '</strong></td><td>' + soy.$$escapeHtml(opt_data.msg_customer_detail['Username']) + '</td></tr><tr><td><strong>' + MSG_UNNAMED_114 + '</strong></td><td>' + soy.$$escapeHtml(opt_data.msg_customer_detail['Email']) + '</td></tr><tr><td><strong>' + MSG_UNNAMED_116 + '</strong></td><td class="account-overview-val account-overview-verified">';
   switch (opt_data.msg_customer_detail['Verified']) {
     case 0:
       /** @desc label on  overview header */

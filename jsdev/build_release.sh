@@ -33,7 +33,6 @@ SOY_TEMPLATES="
                ui/algorithm_selector
                ui/algorithm_runner
                ui/locked_balance_display
-               ui/remittance_box
                ui/api_key_data_entry
                ui/dialog
                ui/withdraw_request_data_entry

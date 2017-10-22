@@ -1,4 +1,4 @@
-// This file was automatically generated from line_of_credit_table.default.soy.
+// This file was automatically generated from line_of_credit_table.coinage.soy.
 // Please don't edit this file by hand.
 
 goog.provide('bitex.ui.LineOfCreditTable.templates');
@@ -13,7 +13,7 @@ bitex.ui.LineOfCreditTable.templates.btnGroup = function(opt_data) {
 
 bitex.ui.LineOfCreditTable.templates.btnInfo = function(opt_data) {
   var output = '';
-  /** @desc info button on line of credit table */
+  /** @desc info */
   var MSG_UNNAMED_105 = goog.getMsg('info');
   output += '<a class="btn btn-mini btn-info btn-line-of-credit-action btn-line-of-credit-info" href="#" data-action="INFO" data-row="' + soy.$$escapeHtml(opt_data.dataRow) + '">' + MSG_UNNAMED_105 + '<i class="icon-white icon-search"></i></a>';
   return output;
@@ -22,7 +22,7 @@ bitex.ui.LineOfCreditTable.templates.btnInfo = function(opt_data) {
 
 bitex.ui.LineOfCreditTable.templates.btnEnable = function(opt_data) {
   var output = '';
-  /** @desc Enable button on line of credit table */
+  /** @desc Enable */
   var MSG_UNNAMED_107 = goog.getMsg('Enable');
   output += '<a class="btn btn-mini btn-success btn-line-of-credit-action btn-line-of-credit-enable" href="#" data-action="ENABLE" data-row="' + soy.$$escapeHtml(opt_data.dataRow) + '">' + MSG_UNNAMED_107 + '<i class="icon-white icon-check"></i></a>';
   return output;
@@ -31,7 +31,7 @@ bitex.ui.LineOfCreditTable.templates.btnEnable = function(opt_data) {
 
 bitex.ui.LineOfCreditTable.templates.btnDisable = function(opt_data) {
   var output = '';
-  /** @desc Disable button on line of credit table */
+  /** @desc Disable */
   var MSG_UNNAMED_109 = goog.getMsg('Disable');
   output += '<a class="btn btn-mini btn-info btn-line-of-credit-action btn-line-of-credit-disable" href="#" data-action="DISABLE" data-row="' + soy.$$escapeHtml(opt_data.dataRow) + '">' + MSG_UNNAMED_109 + '<i class="icon-white icon-remove"></i></a>';
   return output;

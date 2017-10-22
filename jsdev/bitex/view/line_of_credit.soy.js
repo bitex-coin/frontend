@@ -1,4 +1,4 @@
-// This file was automatically generated from line_of_credit.default.soy.
+// This file was automatically generated from line_of_credit.coinage.soy.
 // Please don't edit this file by hand.
 
 goog.provide('bitex.view.LineOfCreditView.templates');

@@ -184,7 +184,6 @@ var MSG_WITHDRAW_FIELD_INTENDED_PURPOSE = goog.getMsg('Purpose');
 
 /**
  * @param {number=} broker_id
- * @param {Array.<Array.<string> > remittance_box
  * @param {string=} opt_default_country
  * @param {string=} opt_default_state
  * @param {number=} opt_test_request_timer_in_ms. Defaults to 30 seconds
@@ -193,7 +192,6 @@ var MSG_WITHDRAW_FIELD_INTENDED_PURPOSE = goog.getMsg('Purpose');
  * @extends {goog.events.EventTarget}
  */
 bitex.app.Bitex = function(broker_id,
-                                remittance_box,
                                 opt_default_country,
                                 opt_default_symbol,
                                 opt_default_state,
@@ -236,8 +234,6 @@ bitex.app.Bitex = function(broker_id,
   if (goog.isDefAndNotNull(opt_default_state)) {
     this.model_.set('DefaultState', opt_default_state);
   }
-
-  this.model_.set('RemittanceBoxInfo', remittance_box);
 
   this.open_orders_request_id_ = parseInt( 1e7 * Math.random() , 10 );
 
