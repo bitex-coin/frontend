@@ -6,7 +6,7 @@ global:
   about: Sobre
   twitter: Twitter
 exchanges:
-  demo:
+  bitex:
     title: Brabex Brazilian Bitcoin Exchange
     description: Site de demonstração da plataforma de negociação de Bitcoins open source da Bitex
     keywords: bitcoin, exchange de bitcoins, mercado de bitcoins, bolsa de bitcoins, open source
