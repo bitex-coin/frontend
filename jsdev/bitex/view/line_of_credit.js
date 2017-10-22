@@ -121,7 +121,7 @@ bitex.view.LineOfCreditView.prototype.formatLineOfCredit_ = function(line_of_cre
    "ProviderLastName":"Gunden",
    "TakerFirstName":"Rodrigo",
    "TakerLastName":"Souza",
-   "Description":"BlinkTrade Remittances",
+   "Description":"Bitex Remittances",
    "Currency":"USD",
    "DeliveryCurrencies":["BTC"],
    "ContractInfo":{

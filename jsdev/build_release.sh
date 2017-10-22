@@ -61,7 +61,7 @@ done
 
 echo "done with soy templates"
 
-# BlinkTrade Application - en_US
+# Bitex Application - en_US
 python ./closure-library/closure/bin/build/closurebuilder.py  \
   --root=./closure-library/ \
   --root=./closure-bootstrap/javascript/ \
@@ -70,7 +70,7 @@ python ./closure-library/closure/bin/build/closurebuilder.py  \
   --root=./libphonenumber/i18n/phonenumbers/ \
   --root=./expression_evaluator/ \
   --root=./bitex \
-  --namespace=bitex.app.BlinkTrade \
+  --namespace=bitex.app.Bitex \
   --output_mode=compiled \
   --compiler_jar=./tools/compiler.jar \
   --compiler_flags="--compilation_level=ADVANCED_OPTIMIZATIONS" \
@@ -90,7 +90,7 @@ python ./closure-library/closure/bin/build/closurebuilder.py  \
   --compiler_flags="--externs=./externs/facebook_javascript_sdk.js" \
   --compiler_flags="--externs=./externs/qrcode.js" \
   --compiler_flags="--translations_file=./translations/$LANG.xtb.xml" \
-   > ../assets/js/bitex_app_blink_trade.compiled.$LANG.$THEME.js
+   > ../assets/js/bitex_app_trade.compiled.$LANG.$THEME.js
 
 # enable those flags to debug the compiled code.
 #  --compiler_flags="--debug=TRUE" \

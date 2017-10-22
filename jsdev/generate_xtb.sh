@@ -14,7 +14,7 @@ python ./closure-library/closure/bin/build/closurebuilder.py  \
   --root=./uniform/ \
   --root=./libphonenumber/i18n/phonenumbers/ \
   --root=./expression_evaluator/ \
-  --namespace=bitex.app.BlinkTrade \
+  --namespace=bitex.app.Bitex \
   --output_mode=compiled \
   --compiler_jar=./tools/XtbGenerator.jar \
   --compiler_flags="--lang=$LANG" \
