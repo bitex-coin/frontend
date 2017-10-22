@@ -3,55 +3,49 @@ global:
   english: English
   spanish: Español
   tagline: English
-  about: About
+  about: Sobre
   twitter: Twitter
 exchanges:
-  bitex:
-    title: BitEX - REAL open source exchange
-    description: Bolsa Brasileira de Moedas criptografadas
-    keywords: bitcoin, bitcoin exchange, open source bitcoin exchange, bitcoin trading plataform, open source bitcoin trading plataform
-    lead: The first real open source exchange
-
   demo:
-    title: BlinkDemo - Open Source Bitcoin Exchange demo website
-    description: Open Source Bitcoin Exchange demo website
-    keywords: bitcoin, bitcoin exchange, open source bitcoin exchange, bitcoin trading plataform, open source bitcoin trading plataform
-    lead: See our open source Bitcoin exchange in action
+    title: Brabex Brazilian Bitcoin Exchange
+    description: Site de demonstração da plataforma de negociação de Bitcoins open source da Bitex
+    keywords: bitcoin, exchange de bitcoins, mercado de bitcoins, bolsa de bitcoins, open source
+    lead: Demonstração da exchange de Bitcoins open source da Bitex
   chilebit:
-    title: ChileBit.NET - The first bitcoin exchange in Chile
-    description: The first bitcoin exchange in Chile
-    keywords: Buy and sell bitcoin in Chile, bitcoin exchange in Chile, sell bitcoins in Chile, buy bitcoins in Chile
-    lead: The first bitcoin exchange in Chile
+    title: ChileBit.NET - A primeira exchange de Bitcoins do Chile
+    description: Compre e venda bitcoins no Chile de maneira segura através do ChileBit.NET. Com o ChileBit.NET você pode começar a comprar e vender bitcoins hoje. O processo de registro dura menos de um minuto.
+    keywords: Compra e venda de bitcoins no Chile, bolsa de bitcoins no Chile, venda bitcoins no Chile, compre bitcoins no Chile
+    lead: A primeira exchange de Bitcoins do Chile
   surbitcoin:
-    title: SurBitcoin - The first bitcoin exchange in Venezuela
-    description: The first bitcoin exchange in Venezuela
-    keywords: Buy and sell bitcoin in Venezuela, bitcoin exchange in Venezuela, sell bitcoins in Venezuela, buy bitcoins in Venezuela
-    lead: The first bitcoin exchange in Venezuela
+    title: Surbitcoin - A primeira exchange de Bitcoins da Venezuela
+    description: Compre e venda bitcoins na Venezuela de maneira segura através da SurBitcoin. Com a SurBitcoin você pode começar a comprar e vender bitcoins hoje. O processo de registro dura menos de um minuto.
+    keywords: Compra e venda de bitcoins na Venezuela, bolsa de bitcoins na Venezuela, venda bitcoins na Venezuela, compre bitcoins na Venezuela
+    lead: A primeira exchange de Bitcoins da Venezuela
   urdubit:
-    title: UrduBit - The first bitcoin exchange in Pakistan
-    description: The first bitcoin exchange in Pakistan
-    keywords: Buy and sell bitcoin in Pakistan, bitcoin exchange in Pakistan, sell bitcoins in Pakistan, buy bitcoins in Pakistan
-    lead: The first bitcoin exchange in Pakistan
+    title: UrduBit - A primeira exchange de Bitcoins do Pakistão
+    description: Compre e venda bitcoins no Pakistão de maneira segura através da Urdubit. Com a UrduBit você pode começar a comprar e vender bitcoins hoje. O processo de registro dura menos de um minuto.
+    keywords: Compra e venda de bitcoins no Pakistão, bolsa de bitcoins no Pakistão, venda bitcoins no Pakistão, compre bitcoins no Pakistão
+    lead: A primeira exchange de Bitcoins do Pakistão
   foxbit:
-    title: FoxBit - Buy or sell bitcoins in Brazil
+    title: FoxBit - Compre e venda Bitcoins no Brasil
     description: Compre e venda bitcoins no Brasil de maneira segura através da FoxBit. Com o FoxBit você pode começar a comprar e vender bitcoins hoje. O processo de registro dura menos de um minuto.
-    keywords: Buy and sell bitcoin in Brazil, bitcoin exchange in Brazil, sell bitcoins in Brazil, buy bitcoins in Brazil, Bitcoin exchange in Brazil
-    lead: Compre ou venda seus Bitcoins no Brasil
+    keywords: Compra e venda de bitcoins no Brasil, bolsa de bitcoins no Brasil, venda bitcoins no Brasil, compre bitcoins no Brasil
+    lead: Compre e Venda seus bitcoins de maneira segura e rápida.
   romaniabex:
-    title: RomaniaBitcoin.Exchange - Buy or sell bitcoins in Romania
-    description: Buy and sell bitcoin in Romania
-    keywords: Buy and sell bitcoin in Romania, bitcoin exchange in Romania, sell bitcoins in Romania, buy bitcoins in Romania
-    lead: Buy and sell bitcoin in Romania
+    title: RomaniaBitcoin.exchange - Compre e venda bitcoins na Romênia
+    description:  Compre e venda bitcoins na Romênia
+    keywords: Compra e venda de bitcoins na Romênia, bolsa de bitcoins na Romênia, venda bitcoins na Romênia, compre bitcoins na Romênia
+    lead: Compre e venda bitcoins na Romênia
   bitcoinvietnam:
-    title: VBTC - Buy or sell bitcoins in Vietnam
-    description: Buy and sell bitcoin in Vietnam
-    keywords: Buy and sell bitcoin in Vietnam, bitcoin exchange in Vietnam, sell bitcoins in Vietnam, buy bitcoins in Vietnam
-    lead: Buy and sell bitcoin in Vietnam
+    title: VBTC - Compre e venda bitcoins no Vietnam 
+    description: Compre e venda bitcoins no Vietnam
+    keywords: Compra e venda de bitcoins no Vietnam, bolsa de bitcoins no Vietnam, venda bitcoins no Vietnam, compre bitcoins no Vietnam
+    lead: Compre e venda bitcoins no Vietnam
   yuanbit:
-    title: YuanBit.com - Buy or sell bitcoins in China
-    description: Buy and sell bitcoin in China
-    keywords: Buy and sell bitcoin in China, bitcoin exchange in China, sell bitcoins in China, buy bitcoins in China
-    lead: Buy and sell bitcoin in China
+    title: YuanBit.com - Compre e venda bitcoins na China
+    description: Compre e venda bitcoins na China
+    keywords: Compra e venda de bitcoins na China, bolsa de bitcoins na China, venda bitcoins na China, compre bitcoins na China
+    lead: Compre e venda bitcoins na China
   bitinvest:
     title: Bitinvest - Bitcoin rápido, fácil e seguro - Comprar e Vender Bitcoin com as menores taxas do Brasil
     description: Bitinvest - Bitcoin rápido, fácil e seguro - Comprar e Vender Bitcoin com as menores taxas do Brasil
@@ -62,210 +56,210 @@ exchanges:
     description: Unocoin is India's most popular bitcoin wallet. We make it super easy to securely buy, use and accept bitcoin, following KYC-AML guidelines.
     keywords: bitcoin, buy bitcoin, sell bitcoin, buy bitcoin india, sell bitcoin india, bitcoin india, bitcoin inr, btc inr, bitcoin wallet india, store bitcoin india, buy bitcoin inr, sell bitcoin inr, send bitcoin, send bitcoin india, receive bitcoin, receive bitcoin india, bitcoin price, btc to inr, btc price in inr, bitcoin exchange
     lead: Unocoin is india's most popular bitcoin wallet
+
 views:
   landing:
     about:
-      learn: Learn More
+      learn: Mais
       phrase1:
-        title: Easy and Fast
+        title: Fácil e Rapido
         icon: ico-tradewithus
-        description: We strive for simplicity. We work hard to make it easy for you to buy and sell and use advanced features like <a href="https://github.com/blinktrade/algorithm-trading" target="_BLANK">open source trading algorithms</a>, even if you are completely new to trading. All of our deposits and withdrawals are processed instantly so that you can get your bitcoins in less than 1 minute.
+        description: Nós focamos na Simplicidade. Trabalhamos duro para tornar fácil a compra e venda de Bitcoins, trazendo recursos avançados como <a href="https://github.com/Bitex/algorithm-trading" target="_BLANK">algoritimos de negociação de código aberto</a> para você. Todos os depósitos e retiradas são instantâneos permitindo que você consiga comprar ou vender em menos de 1 minuto.
       phrase2:
-        title: 100% Transparency
+        title: 100% Transparente
         icon: ico-secure
-        description: Our dedication to transparency includes our source code which is <a href="https://github.com/blinktrade/frontend/" target="_BLANK">100% open source</a> so that everyone can analyze it and help us look for weaknesses in our security. Our hot and cold wallets are also public so you can do your own solvency check of our exchanges any time directly on the blockchain.
+        description: Nossa transparência vai desde o nosso código fonte que é <a href="https://github.com/Bitex/frontend/" target="_BLANK">100% open source</a>, e disponível para que todos possam analisar e procurar por pontos que reforçem a segurança de toda a exchange. Nossas carteiras, quente e fria são públicas e disponíveis para que você possa verificar a solvência diretamente no blockchain.
       phrase3:
         title: Maecenas vel magna
         icon: ico-liquidity
         description: Donec ac tincidunt enim, quis porttitor massa. Sed vulputate ex at quam venenatis, non facilisis justo vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi diam nisl, congue vehicula maximus eget, tempor nec ipsum. Vestibulum feugiat consequat lacus et congue. Phasellus eu felis vel dui cursus pharetra quis non lectus. Curabitur porta ultrices magna sit amet ultrices. Nam cursus lorem mollis arcu dignissim congue. Praesent vitae venenatis lorem, sit amet efficitur ipsum.
       phrase4:
-        title: Member of BLINKTRADE
+        title: Membro da rede Bitex
         icon: ico-decentralized
-        description: We are a member of the global <a href="https://blinktrade.com" target="_BLANK">BlinkTrade network</a>, that includes <a href="https://foxbit.com.br" target="_BLANK">FoxBit</a> in Brazil, <a href="https://surbitcoin.com/themes/coinage/" target="_BLANK">SurBitcoin</a> in Venezuela, <a href="https://chilebit.net/" target="_BLANK">ChileBit.NET</a> in Chile, <a href="https://urdubit.com/" target="_BLANK">UrduBit</a> in Pakistan and <a href="https://vbtc.vn/" target="_BLANK">VBTC</a> in Vietnam among other companies, market makers, remittance agencies and payment processors. Through our platform you will have access to this global network of exchanges and will be able to navigate all of them in the language of your choice
+        description: Somos membros da rede global da <a href="https://Bitex.com" target="_BLANK">Bitex</a>, rede que integra <a href="https://foxbit.com.br/" target="_BLANK">FOXBIT</a> no Brasil, <a href="https://surbitcoin.com/" target="_BLANK">SurBitcoin</a> na Venezuela, <a href="https://chilebit.net/" target="_BLANK">ChileBit.NET</a> no Chile, <a href="https://urdubit.com/" target="_BLANK">UrduBit</a> no Paquistão e <a href="https://vbtc.vn/" target="_BLANK">VBTC</a> no Vietnã junto com outras empresas, formadores de mercado, empresas de remessa de valores, processadoras de pagamento. Operando conosco, você terá acesso a toda rede mundial de exchanges com suporte local.
     orderbook:
-      title: Live Order Book
+      title: Livro de ofertas 
     signup:
-      title: CREATE YOUR ACCOUNT NOW
-      description: Sign up and discover how easy it is to trade with us.
+      title: CRIE A SUA CONTA AGORA
+      description: Registre-se e descubra o como é fácil negociar conosco. 
   footer:
-    about: About
-    company: Company
-    platform: Platform
+    about: Sobre
+    company: Empresa
+    platform: Plataforma
     blog: Blog
-    chart: Chart
-    latency: Latency
-    version: Version
+    chart: Gráfico
+    latency: Latência
+    version: Versão
 
   toolbar:
-    faq: FAQ
-    trading: Trading
-    market: Market
-    signin: Sign in
-    signup: Sign up
-    connect: Connect
-    high: HIGH
-    last: LAST
-    low: LOW
+    faq: Ajuda
+    trading: Negociações
+    market: Mercado
+    signin: Login
+    signup: Registrar
+    connect: Conectar
+    high: ALTA 
+    last: ÚLTIMO 
+    low: BAIXA
     volume: VOLUME
 
   start:
-    bid: Buy
-    ask: Sell
-    username: "Username:"
-    password: "Password:"
-    login: Login
-    signup: Sign up
+    bid: Compra
+    ask: Venda
+    username: "Login:"
+    password: "Senha:"
+    login: Entrar
+    signup: Registrar
 
   faq:
-    title: FAQ - Frequently Asked Questions
-    get_in_touch: Contact us in case you didn't find the answer to your question
+    title: FAQ - Perguntas Frequentes
+    get_in_touch: Entre em contato caso você não tenha conseguido encontrar a resposta para a sua pergunta
 
   signup:
-    title: Sign up
-    already_registered:  Already registered?
-    login: Login
-    username: Username
-    email: Email address
-    email_placeholder: "eg.: joe@doe.com"
-    password: Password
-    password_help: At least 8 characters
-    confirm_password: Confirm your password
-    country: Country
-    state: State or Province
-    broker: Broker
-    terms_of_service: Terms of service
-    i_agree_with_terms_of_service: I agree with terms of service
-    signup_button_label: Sign up
+    title: Registrar
+    already_registered:  Já possui registro?
+    login: Entrar
+    username: Nickname
+    email: Email
+    email_placeholder: "ex.: jose@email.com"
+    password: Senha
+    password_help: Pelo menos 8 letras
+    confirm_password: Confirme a sua senha
+    country: País
+    state: Estado ou Província
+    broker: Corretor
+    terms_of_service: Termos de serviço
+    i_agree_with_terms_of_service: Estou de acordo com os termos de serviço
+    signup_button_label: Registrar
 
   signin:
-    title: Sign in
-    dont_have_an_account: Don't have an account?
-    signup: Sign up
-    username: Username
-    password: Password
-    forgot_your_password: Forgot your password?
-    login_button_label: Sign in
+    title: Login
+    dont_have_an_account: Não possui uma conta?
+    signup: Registre-se
+    username: Nickname
+    password: Senha
+    forgot_your_password: Esqueceu a sua senha?
+    login_button_label: Entrar
 
   forgot_password:
-    title: Password recovery
+    title: Recuperação da senha
     email: Email
-    recover_password_button_label: Recover password
+    recover_password_button_label: Recuperar senha
 
   set_new_password:
-    title: Set new password
-    security_code: Security code
-    security_code_help: We just sent a security code to your email.
-    new_password: New password
-    new_password_help: At least 8 characters
-    confirm_password: Confirm your password
-    set_new_password_button_label: Reset password
+    title: Definir nova senha
+    security_code: Código de segurança
+    security_code_help: Nós acabamos de enviar um código de segurança para o seu email.
+    new_password: Nova senha
+    new_password_help: Pelo menos 8 letras
+    confirm_password: Confirme a sua senha
+    set_new_password_button_label: Redefinir senha
 
   profile:
-    title: My Profile
+    title: Meu Perfil
     two_factor_auth_section:
-      title: Two factor authentication (2FA)
-      key: Key
-      authentication_code: Authentication code
-      authentication_code_title: Code generated by Google Authenticatior
+      title: Autenticação em 2 passos (2FA)
+      key: Chave
+      authentication_code: Código de Autenticação
+      authentication_code_title: Código gerado pelo Google Authenticator
       authentication_code_placeholder: Ex. 555555
-      enable: Enable
-      disable: Disable
+      enable: Habilitar
+      disable: Desabilitar
 
   trading:
-    title: Buy or Sell
+    title: Comprar ou Vender
 
   offerbook:
-    title: Order Book
-    cumulative: Cumulative
-    fees: Fees
+    title: Livro de ofertas
+    cumulative: Acumulado
+    fees: Taxas
 
   admin:
     title: Admin
 
   customers:
-    title: My customers
+    title: Meus clientes
 
   account_overview:
-    title:  Account overview
-    set_user_fees_button_label: Set user fees
+    title:  Detalhe da conta
+    set_user_fees_button_label: Definir taxas personalizadas
 
   withdraw:
-    title: My Withdrawals
+    title: Saques
 
   withdraw_requests:
-    title: Withdrawal requests
+    title: Pedidos de saques
 
   withdraw_methods:
     title: Withdraw methods
 
   deposit:
-    title: My Deposits
+    title: Depósitos
 
   deposit_requests:
-    title: Deposit requests
+    title: Pedidos de depósitos
 
   ledger:
-    title: Ledger
+    title: Livro contábil
 
   algotrading:
     title: Algorithm Trading
 
   api:
     title: API Keys
-    new_api_key: New API Key
+    new_api_key: Nova API Key
 
   settings:
-    title: Settings
+    title: Configurações
 
   verification:
-    title: Verify your account
+    title: Verificar a sua conta
 
   market:
-    title: Market
+    title: Mercado
 
   alerts:
-    verification: You have not submitted your documents. Please verify your account.
-    enable_two_factor: You can increase the security of your account by enabling authentication in two steps
-    frozen_account: Your account has been frozen by the administrator, please contact support.
+    verification: Verifique a sua conta enviando seus documentos.
+    enable_two_factor: Você pode aumentar a segurança da sua conta apenas habilitando a autenticação em dois passos
+    frozen_account: A sua conta foi congelada pelo administrador, por favor contate o suporte.
 
   line_of_credit:
-    title: Line of credit
+    title: Linha de crédito
 
   history:
-    title: Orders history
+    title: Histórico de ordens
 
   partners:
-    title: Use your bitcoins
-    more: More
+    title: Use os seus Bitcoins
+    more: Mais
     purseio:
       title: Purse.io
-      description: Save 15% Off Amazon with Bitcoin
+      description: Economize 15% no Amazon.com pagando com Bitcoin
 
   sidebar:
     admin: Admin
-    market: "Market:"
-    navigation: Navigation
+    market: "Mercado:"
+    navigation: Navegação
     menu: Menu
-    my_profile: My Profile
-    my_broker: About the exchange
-    trading: Buy or Sell
-    offerbook: Order book
-    partners: Use your bitcoins
-    ledger: Ledger
-    customers: My customers
-    deposit_requests: Deposit requests
-    withdraw_requests: Withdrawal requests
-    deposit: My Deposits
-    withdraw: My Withdrawals
-    verification: Verify your account
-    line_of_credit: Line of credit
-    support: Suggestions & Support
+    my_profile: Meu perfil
+    my_broker: Sobre a exchange
+    trading: Comprar ou Vender
+    offerbook: Livro de ofertas
+    partners: Use os seus Bitcoins
+    ledger: Livro contábil
+    customers: Meus clientes
+    deposit_requests: Depósitos ( clientes )
+    withdraw_requests: Saques ( clientes )
+    deposit: Depósitos
+    withdraw: Saques
+    verification: Verificar a sua conta
+    line_of_credit: Linha de crédito
+    support: Suporte e Sugestões
     api: API
-    logout: Logout
+    logout: Sair
     algotrading: Algo Trading
-    history: Orders history
+    history: Histórico de ordens
     card:  Blink Card
   themes:
-    title: Themes
-    choose: Choose a Theme
-
+    title: Temas
+    choose: Escolha um tema
