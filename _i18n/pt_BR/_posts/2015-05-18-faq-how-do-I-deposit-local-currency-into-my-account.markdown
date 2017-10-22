@@ -11,4 +11,4 @@ No topo da página que irá carregar procure e clique no ícone grande com uma s
 
 Lembre-se que será cobrada uma taxa a cada vez que realizar um depósito. Em um depósito de R$ 1.000,00 (Mil Reais) com uma taxa de 0,99%, você terá R$ 990,10 creditado em seu saldo.
 
-Consulte a taxa atual aqui: http://www.foxbit.com.br/taxas.html
+Consulte a taxa atual aqui: http://www.bitex.com.br/taxas.html
