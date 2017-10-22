@@ -1,4 +1,4 @@
-// This file was automatically generated from withdraw.coinage.soy.
+// This file was automatically generated from withdraw.default.soy.
 // Please don't edit this file by hand.
 
 goog.provide('bitex.view.WithdrawView.templates');
@@ -39,13 +39,13 @@ bitex.view.WithdrawView.templates.WithdrawCommentDialogContent = function(opt_da
   var output = '';
   /** @desc Add Comment */
   var MSG_UNNAMED_80 = goog.getMsg('Add Comment:');
-  output += '<form class="modal-form form-horizontal">';
+  output += '<form class="form-horizontal">';
   var commentList45 = opt_data.comments;
   var commentListLen45 = commentList45.length;
   for (var commentIndex45 = 0; commentIndex45 < commentListLen45; commentIndex45++) {
     var commentData45 = commentList45[commentIndex45];
     output += '<p>' + soy.$$escapeHtml(commentData45) + '</p>';
   }
-  output += '<div class="form-group"><label class="col-xs-4">' + MSG_UNNAMED_80 + '</label><div class="col-xs-12"><textarea class="withdraw-field form-control" id="id_withdraw_comment" rows="4" name="withdraw-comment" type="text"></textarea></div></div></form>';
+  output += '<div class="control-group"><label class="control-label">' + MSG_UNNAMED_80 + '</label><div class="controls"><textarea class="withdraw-field form-control" id="id_withdraw_comment" rows="4" name="withdraw-comment" type="text"></textarea></div></div></form>';
   return output;
 };

@@ -1,4 +1,4 @@
-// This file was automatically generated from bitex_listview.coinage.soy.
+// This file was automatically generated from bitex_listview.default.soy.
 // Please don't edit this file by hand.
 
 goog.provide('bitex.ui.ListView.templates');

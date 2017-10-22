@@ -282,69 +282,6 @@
       </div>
     </div>
 
-      <div class="col-md-6">
-          <div class="ls-box ls-board-box">
-        {if $msg_broker['BrokerID'] >= 0 }
-            {if length($msg_broker['FeeStructure']) > 0 }
-            <header class="ls-info-header">
-                <h2 class="ls-title-3 ls-ico-star">{msg desc="Fee section subtitle on Broker view"}Fees{/msg}</h2>
-            </header>
-
-            <table class="ls-table ls-table-striped">
-                <thead>
-                <tr>
-                    <th>{msg desc="Operation column on Broker fees table"}Operation{/msg}</th>
-                    <th>{msg desc="Fees column on Broker fees table"}Fee{/msg}</th>
-                    <th>{msg desc="Terms column on Broker fees table"}Terms{/msg}</th>
-                </tr>
-                </thead>
-                <tbody>
-                {if not $msg_broker['IsBrokerHub'] }
-                  {if $msg_broker['FormattedTransactionFeeBuy'] == $msg_broker['FormattedTransactionFeeSell']}
-                    <tr>
-                      <td>{msg desc="label in broker fees table"}Trade fee{/msg}</td>
-                      {if $msg_broker['FormattedTakerTransactionFeeBuy'] == $msg_broker['FormattedTransactionFeeBuy']}
-                        <td>{$msg_broker['FormattedTransactionFeeBuy']}</td>
-                      {else}
-                        <td>{$msg_broker['FormattedTakerTransactionFeeBuy']} / {$msg_broker['FormattedTransactionFeeBuy']}</td>
-                      {/if}
-                      <td></td>
-                    </tr>
-                  {else}
-                    <tr>
-                      <td>{msg desc="label in broker fees table"}Trade fee - Buy side{/msg}</td>
-                      {if $msg_broker['FormattedTakerTransactionFeeBuy'] == $msg_broker['FormattedTransactionFeeBuy']}
-                        <td>{$msg_broker['FormattedTransactionFeeBuy']}</td>
-                      {else}
-                        <td>{$msg_broker['FormattedTakerTransactionFeeBuy']} / {$msg_broker['FormattedTransactionFeeBuy']}</td>
-                      {/if}
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>{msg desc="label in broker fees table"}Trade fee - Sell side{/msg}</td>
-                      {if $msg_broker['FormattedTakerTransactionFeeSell'] == $msg_broker['FormattedTransactionFeeSell']}
-                        <td>{$msg_broker['FormattedTransactionFeeSell']} %</td>
-                      {else}
-                        <td>{$msg_broker['FormattedTakerTransactionFeeSell']} / {$msg_broker['FormattedTransactionFeeSell']}</td>
-                      {/if}
-                      <td></td>
-                    </tr>
-                  {/if}
-                {/if}
-                {foreach $fee in $msg_broker['FeeStructure']}
-                    <tr>
-                    <td>{$fee['Operation']}</td>
-                    <td>{$fee['Fee']}</td>
-                    <td>{$fee['Terms']}</td>
-                    </tr>
-                {/foreach}
-                </tbody>
-            </table>
-          </div>
-        </div>
-        {/if}
-      {/if}
-
       <div class="ls-clearfix"></div> 
       {if not $msg_broker['IsBrokerHub'] }
       <div class="col-md-12">
