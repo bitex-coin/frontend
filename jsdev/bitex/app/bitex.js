@@ -458,8 +458,6 @@ bitex.app.Bitex.prototype.run = function(host_api) {
   var twoFactorView       = new bitex.view.TwoFactor(this);
   var faqView             = new bitex.view.NullView(this);
   var themesView          = new bitex.view.NullView(this);
-  var partnersView        = new bitex.view.NullView(this);
-  var purseioView         = new bitex.view.NullView(this);
   var setNewPasswordView  = new bitex.view.SetNewPasswordView(this);
   var loginView           = new bitex.view.LoginView(this);
   var signUpView          = new bitex.view.SignupView(this);
@@ -494,8 +492,6 @@ bitex.app.Bitex.prototype.run = function(host_api) {
   this.views_.addChild( twoFactorView       );
   this.views_.addChild( faqView             );
   this.views_.addChild( themesView          );
-  this.views_.addChild( partnersView        );
-  this.views_.addChild( purseioView         );
   this.views_.addChild( setNewPasswordView  );
   this.views_.addChild( loginView           );
   this.views_.addChild( signUpView          );
@@ -537,8 +533,6 @@ bitex.app.Bitex.prototype.run = function(host_api) {
   this.router_.addView( '(twofactor)'                   , twoFactorView       );
   this.router_.addView( '(faq)'                         , faqView             );
   this.router_.addView( '(themes)'                      , themesView          );
-  this.router_.addView( '(partners)'                    , partnersView        );
-  this.router_.addView( '(purseio)'                     , purseioView         );
   this.router_.addView( '(admin)'                       , startView           );
   this.router_.addView( '(set_new_password)'            , setNewPasswordView  );
   this.router_.addView( '(signin)'                      , loginView           );
