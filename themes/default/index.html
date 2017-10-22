@@ -1,6 +1,6 @@
 ---
 layout:                 application.default
-title:                  Blinktrade demo exchange
+title:                  Bitex demo exchange
 body_classes:           ws-not-connected bitex-not-logged active-view-start
 load_application:       True
 ---
@@ -262,6 +262,157 @@ load_application:       True
   </div>
 
   <div class="page row-fluid bitex-display-if-logged">
+      <div id="id_sidebar" class="span3 sidebar bitex-view
+                                                bitex-view-profile
+                                                bitex-view-twofactor
+                                                bitex-view-trading
+                                                bitex-view-offerbook
+                                                bitex-view-history
+                                                bitex-view-admin_view
+                                                bitex-view-admin_customers
+                                                bitex-view-customers
+                                                bitex-view-account_overview
+                                                bitex-view-withdraw
+                                                bitex-view-withdraw_requests
+                                                bitex-view-card
+                                                bitex-view-deposit
+                                                bitex-view-deposit_requests
+                                                bitex-view-ledger
+                                                bitex-view-settings
+                                                bitex-view-algotrading
+                                                bitex-view-api
+                                                bitex-view-line_of_credit
+                                                bitex-view-my_broker
+                                                bitex-view-verification">
+          <h3><span class="bitex-model bitex-view-title" data-model-key="DisplayName"></span></h3>
+          <div class="bitex-view-content">
+              <div id="account_balance" style="">
+
+                  <form class="form-inline">
+                      <label class="control-label" for="id_instrument_1">{% t views.sidebar.market %}</label>
+                      <select id="id_instrument_1">
+                          <option></option>
+                      </select>
+                  </form>
+
+                  <div id="id_account_summary_content" class=""></div>
+              </div>
+
+              <div id="id_remittance_box" class=""></div>
+
+              <h6>{% t views.sidebar.menu %}</h6>
+              <ul class="nav nav-list">
+                  <li class="bitex-display-if-broker" id="menu-admin_view">
+                      <a href="" data-switch-view="admin_view">
+                          <i data-switch-view="admin" class="icon-user"></i> {% t views.sidebar.admin %}
+                      </a>
+                  </li>
+                  <li id="menu-profile">
+                      <a href="" data-switch-view="profile">
+                          <i data-switch-view="profile" class="icon-user"></i> {% t views.sidebar.my_profile %}
+                      </a>
+                  </li>
+                  <li id="menu-broker">
+                      <a href="" data-switch-view="my_broker">
+                          <i data-switch-view="my_broker" class="icon-search"></i> {% t views.sidebar.my_broker %}
+                      </a>
+                  </li>
+
+                  <li id="menu-trading">
+                      <a href="" data-switch-view="trading">
+                          <i data-switch-view="trading" class="icon-random"></i> {% t views.sidebar.trading %}
+                      </a>
+                  </li>
+
+                  <li id="menu-offerbook">
+                      <a href="" data-switch-view="offerbook">
+                          <i data-switch-view="offerbook" class="icon-book"></i> {% t views.sidebar.offerbook %}
+                      </a>
+                  </li>
+
+                  <li class="bitex-display-if-non-broker" id="menu-history">
+                      <a href="" data-switch-view="history">
+                          <i data-switch-view="history" class="icon-list-alt"></i> {% t views.sidebar.history %}
+                      </a>
+                  </li>
+
+                  <li id="menu-ledger">
+                      <a href="" data-switch-view="ledger">
+                          <i data-switch-view="ledger" class="icon-list"></i> {% t views.sidebar.ledger %}
+                      </a>
+                  </li>
+
+                  <li class="bitex-display-if-broker" id="menu-customers">
+                      <a href="" data-switch-view="customers">
+                          <i data-switch-view="customers" class="icon-user"></i> {% t views.sidebar.customers %}
+                      </a>
+                  </li>
+
+                  <li class="bitex-display-if-broker" id="menu-deposit_requests">
+                      <a href="" data-switch-view="deposit_requests">
+                          <i data-switch-view="deposit_requests" class="icon-plus"></i> {% t views.sidebar.deposit_requests %}
+                      </a>
+                  </li>
+
+                  <li class="bitex-display-if-broker" id="menu-withdraw_requests">
+                      <a href="" data-switch-view="withdraw_requests">
+                          <i data-switch-view="withdraw_requests" class="icon-minus"></i> {% t views.sidebar.withdraw_requests %}
+                      </a>
+                  </li>
+
+                  <li id="menu-deposit" class="bitex-display-if-non-broker">
+                      <a href="" data-switch-view="deposit">
+                          <i data-switch-view="deposit" class="icon-plus"></i> {% t views.sidebar.deposit %}
+                      </a>
+                  </li>
+
+                  <li id="menu-withdraw" class="bitex-display-if-non-broker">
+                      <a href="" data-switch-view="withdraw">
+                          <i data-switch-view="withdraw" class="icon-minus"></i> {% t views.sidebar.withdraw %}
+                      </a>
+                  </li>
+
+                  <li class="bitex-display-if-non-broker bitex-model" style="display: none" id="card_menu_id" data-model-key="HasCardFeature" data-model-action="show_element" id="menu-card">
+                      <a href="" data-switch-view="card">
+                          <i data-switch-view="card" class="icon-tag"></i> {% t views.sidebar.card %}
+                      </a>
+                  </li>
+
+                  <li style="" class="bitex-display-if-non-broker" id="verification_menu_id">
+                      <a href="" data-switch-view="verification">
+                          <i data-switch-view="verification" class="icon-check"></i> {% t views.sidebar.verification %}
+                      </a>
+                  </li>
+
+
+                  <li style="" class="bitex-display-if-non-broker bitex-model" style="display: none" id="line_of_credit_menu_id" data-model-key="HasLineOfCredit" data-model-action="show_element" id="menu-line_of_credit">
+                      <a href="" data-switch-view="line_of_credit">
+                          <i data-switch-view="line_of_credit" class="icon-retweet"></i> {% t views.sidebar.line_of_credit %}
+                      </a>
+                  </li>
+
+                  <li style="">
+                      <a href="" data-switch-view="faq">
+                          <i data-switch-view="faq" class="icon-question"></i> {% t views.sidebar.support %}
+                      </a>
+                  </li>
+
+                  <li style="" id="menu-api">
+                      <a href="" data-switch-view="api">
+                          <i data-switch-view="api" class="icon-globe"></i> {% t views.sidebar.api %}
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="javascript:location.reload()">
+                          <i class="icon-signout"></i> {% t views.sidebar.logout %}
+                      </a>
+                  </li>
+              </ul>
+          </div>
+
+      </div>
+
     <div class="span9">
       <div id="profile" class="bitex-view">
         <div class="section-title">
@@ -547,139 +698,6 @@ load_application:       True
           </script>
         </div>
       </div>
-    </div>
-
-    <div id="id_sidebar" class="span3 sidebar bitex-view
-                                                bitex-view-profile
-                                                bitex-view-twofactor
-                                                bitex-view-trading
-                                                bitex-view-offerbook
-                                                bitex-view-history
-                                                bitex-view-admin_view
-                                                bitex-view-admin_customers
-                                                bitex-view-customers
-                                                bitex-view-account_overview
-                                                bitex-view-withdraw
-                                                bitex-view-withdraw_requests
-                                                bitex-view-card
-                                                bitex-view-deposit
-                                                bitex-view-deposit_requests
-                                                bitex-view-ledger
-                                                bitex-view-settings
-                                                bitex-view-algotrading
-                                                bitex-view-api
-                                                bitex-view-line_of_credit 
-                                                bitex-view-my_broker
-                                                bitex-view-verification">
-      <h3><span class="bitex-model bitex-view-title" data-model-key="DisplayName"></span></h3> 
-      <div class="bitex-view-content">
-        <div id="account_balance" style="">
-
-          <form class="form-inline">
-            <label class="control-label" for="id_instrument_1">{% t views.sidebar.market %}</label>
-            <select id="id_instrument_1">
-              <option></option>
-            </select>
-          </form>
-
-          <div id="id_account_summary_content" class=""></div>
-        </div>
-
-        <div id="id_remittance_box" class=""></div>
-
-        <h6>{% t views.sidebar.menu %}</h6>
-        <ul class="nav nav-list">
-          <li class="bitex-display-if-broker" id="menu-admin_view">
-            <a href="" data-switch-view="admin_view">
-              <i data-switch-view="admin" class="icon-user"></i> {% t views.sidebar.admin %}
-            </a>
-          </li>
-          <li id="menu-profile">
-            <a href="" data-switch-view="profile">
-              <i data-switch-view="profile" class="icon-user"></i> {% t views.sidebar.my_profile %}</a>
-          </li>
-          <li id="menu-broker">
-            <a href="" data-switch-view="my_broker">
-              <i data-switch-view="my_broker" class="icon-search"></i> {% t views.sidebar.my_broker %}</a></li>
-
-          <li id="menu-trading">
-            <a href="" data-switch-view="trading">
-              <i data-switch-view="trading" class="icon-random"></i> {% t views.sidebar.trading %}</a>
-          </li>
-
-          <li id="menu-offerbook">
-            <a href="" data-switch-view="offerbook">
-              <i data-switch-view="offerbook" class="icon-book"></i> {% t views.sidebar.offerbook %}</a>
-          </li>
-
-          <li class="bitex-display-if-non-broker" id="menu-history">
-            <a href="" data-switch-view="history">
-              <i data-switch-view="history" class="icon-list-alt"></i> {% t views.sidebar.history %}</a>
-          </li>
-
-          <li id="menu-ledger">
-            <a href="" data-switch-view="ledger">
-              <i data-switch-view="ledger" class="icon-list"></i> {% t views.sidebar.ledger %}</a>
-          </li>
-
-          <li class="bitex-display-if-broker" id="menu-customers">
-            <a href="" data-switch-view="customers">
-              <i data-switch-view="customers" class="icon-user"></i> {% t views.sidebar.customers %}</a>
-          </li>
-
-          <li class="bitex-display-if-broker" id="menu-deposit_requests">
-            <a href="" data-switch-view="deposit_requests">
-              <i data-switch-view="deposit_requests" class="icon-plus"></i> {% t views.sidebar.deposit_requests %}</a>
-          </li>
-
-          <li class="bitex-display-if-broker" id="menu-withdraw_requests">
-            <a href="" data-switch-view="withdraw_requests">
-              <i data-switch-view="withdraw_requests" class="icon-minus"></i> {% t views.sidebar.withdraw_requests %}</a>
-          </li>
-
-          <li id="menu-deposit" class="bitex-display-if-non-broker">
-            <a href="" data-switch-view="deposit">
-              <i data-switch-view="deposit" class="icon-plus"></i> {% t views.sidebar.deposit %}</a>
-          </li>
-
-          <li id="menu-withdraw" class="bitex-display-if-non-broker">
-            <a href="" data-switch-view="withdraw">
-              <i data-switch-view="withdraw" class="icon-minus"></i> {% t views.sidebar.withdraw %}</a>
-          </li>
-
-          <li class="bitex-display-if-non-broker bitex-model" style="display: none" id="card_menu_id"  data-model-key="HasCardFeature" data-model-action="show_element" id="menu-card">
-              <a href="" data-switch-view="card">
-                  <i data-switch-view="card" class="icon-tag"></i> {% t views.sidebar.card %}</a>
-          </li>
-
-          <li style="" class="bitex-display-if-non-broker" id="verification_menu_id">
-            <a href="" data-switch-view="verification">
-              <i data-switch-view="verification" class="icon-check"></i> {% t views.sidebar.verification %}</a>
-          </li>
-
-
-          <li style="" class="bitex-display-if-non-broker bitex-model" style="display: none"  id="line_of_credit_menu_id" data-model-key="HasLineOfCredit" data-model-action="show_element" id="menu-line_of_credit">
-            <a href="" data-switch-view="line_of_credit">
-              <i data-switch-view="line_of_credit" class="icon-retweet"></i> {% t views.sidebar.line_of_credit %}</a>
-          </li>
-
-          <li style="">
-            <a href="" data-switch-view="faq">
-              <i data-switch-view="faq" class="icon-question"></i> {% t views.sidebar.support %}</a>
-          </li>
-
-          <li style="" id="menu-api">
-            <a href="" data-switch-view="api">
-              <i data-switch-view="api" class="icon-globe"></i> {% t views.sidebar.api %}</a>
-          </li>
-
-          <li>
-            <a href="javascript:location.reload()">
-              <i class="icon-signout"></i> {% t views.sidebar.logout %}</a>
-          </li>
-        </ul>
-      </div>
-
     </div>
   </div>
 
