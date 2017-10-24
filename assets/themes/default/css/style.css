@@ -47,8 +47,8 @@ body {
 /* Give a quick and non-cross-browser friendly divider */
 .sidebar {
   margin-left: 0;
-  padding-left: 19px;
-  border-left: 1px solid #eee;
+  padding-right: 19px;
+  border-right: 1px solid #eee;
 }
 
 .sidebar .nav-list {
