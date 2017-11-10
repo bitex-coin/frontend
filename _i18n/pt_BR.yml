@@ -7,10 +7,10 @@ global:
   twitter: Twitter
 exchanges:
   bitex:
-    title: Brabex Brazilian Bitcoin Exchange
-    description: Site de demonstração da plataforma de negociação de Bitcoins open source da Bitex
+    title: Brabex - Brazilian Bitcoin Exchange
+    description: A plataforma mais rápida, fácil e segura para comprar e vender Bitcoins
     keywords: bitcoin, exchange de bitcoins, mercado de bitcoins, bolsa de bitcoins, open source
-    lead: Demonstração da exchange de Bitcoins open source da Bitex
+    lead: A plataforma mais rápida, fácil e segura para comprar e vender Bitcoins
   chilebit:
     title: ChileBit.NET - A primeira exchange de Bitcoins do Chile
     description: Compre e venda bitcoins no Chile de maneira segura através do ChileBit.NET. Com o ChileBit.NET você pode começar a comprar e vender bitcoins hoje. O processo de registro dura menos de um minuto.
@@ -96,12 +96,12 @@ views:
     trading: Negociações
     market: Mercado
     signin: Login
-    signup: Registrar
+    signup: Cadastrar
     connect: Conectar
-    high: ALTA 
-    last: ÚLTIMO 
-    low: BAIXA
-    volume: VOLUME
+    high: Máxima 
+    last: Último 
+    low: Mínima
+    volume: Volume
 
   start:
     bid: Compra
@@ -109,34 +109,34 @@ views:
     username: "Login:"
     password: "Senha:"
     login: Entrar
-    signup: Registrar
+    signup: Cadastrar
 
   faq:
     title: FAQ - Perguntas Frequentes
     get_in_touch: Entre em contato caso você não tenha conseguido encontrar a resposta para a sua pergunta
 
   signup:
-    title: Registrar
-    already_registered:  Já possui registro?
+    title: Abra sua conta
+    already_registered:  Já possui cadastro?
     login: Entrar
-    username: Nickname
+    username: Apelido
     email: Email
-    email_placeholder: "ex.: jose@email.com"
+    email_placeholder: "ex.: nome@email.com"
     password: Senha
     password_help: Pelo menos 8 letras
     confirm_password: Confirme a sua senha
     country: País
-    state: Estado ou Província
+    state: Estado
     broker: Corretor
     terms_of_service: Termos de serviço
     i_agree_with_terms_of_service: Estou de acordo com os termos de serviço
-    signup_button_label: Registrar
+    signup_button_label: Cadastrar
 
   signin:
     title: Login
     dont_have_an_account: Não possui uma conta?
-    signup: Registre-se
-    username: Nickname
+    signup: Cadastre-se
+    username: Apelido
     password: Senha
     forgot_your_password: Esqueceu a sua senha?
     login_button_label: Entrar
@@ -191,7 +191,7 @@ views:
     title: Pedidos de saques
 
   withdraw_methods:
-    title: Withdraw methods
+    title: Formas de Resgate
 
   deposit:
     title: Depósitos
@@ -203,7 +203,7 @@ views:
     title: Livro contábil
 
   algotrading:
-    title: Algorithm Trading
+    title: Algo Trading
 
   api:
     title: API Keys
@@ -242,11 +242,11 @@ views:
     navigation: Navegação
     menu: Menu
     my_profile: Meu perfil
-    my_broker: Sobre a exchange
+    my_broker: Configurações
     trading: Comprar ou Vender
     offerbook: Livro de ofertas
     partners: Use os seus Bitcoins
-    ledger: Livro contábil
+    ledger: Extrato
     customers: Meus clientes
     deposit_requests: Depósitos ( clientes )
     withdraw_requests: Saques ( clientes )

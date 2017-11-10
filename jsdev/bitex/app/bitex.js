@@ -735,7 +735,7 @@ bitex.app.Bitex.prototype.onBitexSecurityStatus_ = function(e) {
  */
 bitex.app.Bitex.prototype.changeTitleTicker_  = function() {
   var currentTitle = document.title.replace(new RegExp(/^.*?-/), "");
-  document.title = this.getModel().get('formatted_BLINK_' + this.getModel().get('DefaultSymbol') + '_LAST_PX') + ' - ' + currentTitle;
+  document.title = this.getModel().get('formatted_BITEX_' + this.getModel().get('DefaultSymbol') + '_LAST_PX') + ' - ' + currentTitle;
 };
 
 /**
@@ -860,7 +860,7 @@ bitex.app.Bitex.prototype.calculatePortfolioValue = function(portfolio_currency)
 
       var portfolio_currency_exchange_ticker;
       if (this.isCryptoCurrency(balance_currency)) {
-        portfolio_currency_exchange_ticker = 'BLINK_' + balance_currency + portfolio_currency + '_BEST_BID';
+        portfolio_currency_exchange_ticker = 'BITEX_' + balance_currency + portfolio_currency + '_BEST_BID';
         balance_portfolio_balance += (
           appModel.get(balance_model_key + '_' + balance_currency, 0) *
           appModel.get(portfolio_currency_exchange_ticker, 0) /  1e8 );
@@ -870,7 +870,7 @@ bitex.app.Bitex.prototype.calculatePortfolioValue = function(portfolio_currency)
           appModel.get(portfolio_currency_exchange_ticker, 0) /  1e8 );
 
       } else if (this.isCryptoCurrency(portfolio_currency)) {
-        portfolio_currency_exchange_ticker = 'BLINK_' + portfolio_currency + balance_currency + '_BEST_ASK';
+        portfolio_currency_exchange_ticker = 'BITEX_' + portfolio_currency + balance_currency + '_BEST_ASK';
         balance_portfolio_balance += (
           appModel.get(balance_model_key + '_' + balance_currency, 0) /
           appModel.get(portfolio_currency_exchange_ticker, 0) *  1e8 );
@@ -879,8 +879,8 @@ bitex.app.Bitex.prototype.calculatePortfolioValue = function(portfolio_currency)
           appModel.get(position_model_key + '_' + balance_currency, 0) /
           appModel.get(portfolio_currency_exchange_ticker, 0) *  1e8 );
       } else {
-        var currency_bitcoin_exchange_ticker = 'BLINK_BTC' + balance_currency + '_BEST_ASK';
-        var portfolio_bitcoin_exchange_ticker = 'BLINK_BTC' + portfolio_currency + '_BEST_BID';
+        var currency_bitcoin_exchange_ticker = 'BITEX_BTC' + balance_currency + '_BEST_ASK';
+        var portfolio_bitcoin_exchange_ticker = 'BITEX_BTC' + portfolio_currency + '_BEST_BID';
 
         balance_portfolio_balance += (
           appModel.get(balance_model_key + '_' + balance_currency, 0) /
@@ -965,7 +965,7 @@ bitex.app.Bitex.prototype.onUpdateBalance_ = function(e) {
   var securityList = this.getModel().get('SecurityList');
   if (goog.isDefAndNotNull(securityList)) {
     goog.array.forEach(securityList['Instruments'], function(instrument) {
-      if (instrument["Market"] == "BLINK") {
+      if (instrument["Market"] == "BITEX") {
         this.calculatePortfolioValue(instrument['Currency']);
       }
     }, this);

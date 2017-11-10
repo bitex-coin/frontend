@@ -87,7 +87,7 @@ bitex.view.MarketView.prototype.recreateComponents_ = function() {
   this.market_view_table_ = new bitex.ui.MarketViewTable();
   var market_view_table_model = {id:'market_view', instruments:[]};
   goog.array.forEach(model.get('SecurityList')['Instruments'], function( instrument) {
-    if (instrument['Market'] == 'BLINK') {
+    if (instrument['Market'] == 'BITEX') {
       market_view_table_model.instruments.push(instrument);
     }
   }, this);

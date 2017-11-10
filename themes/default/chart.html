@@ -1,12 +1,8 @@
----
-layout:                 application.default
----
-
 <html>
 
   <head>
     <meta charset="utf-8" />
-    <link href="{{ site.url }}{{ site.baseurl }}/assets/themes/default/css/style-new.css?v={{ site.deploy_version }}" rel="stylesheet">
+    <link href="//demo.brabex.com.br/assets/themes/default/css/style-new.css?v={{ site.deploy_version }}" rel="stylesheet">
     <script type='text/javascript' src='//code.jquery.com/jquery-1.9.1.js'></script>
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
@@ -26,7 +22,7 @@ layout:                 application.default
         var twenty_fours_ago = now.getTime()/1000  - (60 * 60 * 24 * 1);
 
         var limit = 500;
-        var url = '//bitcoindubai.ae/api/v1/' + currency + '/trades?limit=' + limit  + '&crypto_currency=' + crypto_currency + '&since=' + twenty_fours_ago;
+        var url = '//demo.brabex.com.br/api/v1/' + currency + '/trades?limit=' + limit  + '&crypto_currency=' + crypto_currency + '&since=' + twenty_fours_ago;
 
         var prices = [],volume = [];
 

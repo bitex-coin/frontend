@@ -1549,12 +1549,12 @@ bitex.api.BitEx.prototype.unSubscribeSecurityStatus = function(market_data_id){
 
 
 /**
- * @param {string} opt_market. Defaults to BLINK
+ * @param {string} opt_market. Defaults to BITEX
  * @param {string} opt_requestId. Defaults to random generated number
  */
 bitex.api.BitEx.prototype.requestSecurityList = function(opt_market, opt_requestId){
   var requestId = opt_requestId || parseInt( 1e7 * Math.random() , 10 );
-  var market = opt_market || "BLINK";
+  var market = opt_market || "BITEX";
   var msg = {
     'MsgType': 'x',
     'SecurityReqID': requestId,
