@@ -9,39 +9,46 @@ load_application:       True
 <div class="container">
   <!-- landing page-->
   <div id="start" class="page  row-fluid bitex-view bitex-view-admin">
-    <header class="jumbotron">
-      <img src="{{ site.baseurl }}/assets/exchange_logos/{{ site.exchange_logo }}_landing_page_logo.png" style="">
-      <p class="lead bitex-view-title bitex-view-title">
-        {% assign lead = "exchanges." | append: site.exchange | append: ".lead" %}
-        {% t lead %}
-      </p>
-    </header>
 
-    <div class="bitex-view-content">
-      <div class="row bitex-hide-if-logged bitex-view-content" style="text-align: center;">
-        <form action="" class="form-inline">
-          <div class="row-fluid">
-            <label for="id_landing_username">{% t views.start.username %}</label>
-            <input class="focus" id="id_landing_username" placeholder="" size="30" type="text" autofocus>
-            <label for="id_landing_password">{% t views.start.password %}</label>
-            <input id="id_landing_password" placeholder="" size="30"  type="password">
-            <button id="id_landing_signin" class="btn btn-primary">{% t views.start.login %}</button>
-          </div>
-          <div class="clearfix" style="height: 20px"></div>
-          <p>
-            <a href="#" data-switch-view="forgot_password">{% t views.signin.forgot_your_password %}</a>
-          </p>
-          <div class="row-fluid">
-            <span class="text-center">
-              <a href="" class="btn btn-success btn-large" data-switch-view="signup">{% t views.start.signup %}</a>
-            </span>
-          </div>
-        </form>
-      </div>
-    </div>
+		<div class="horizontal-align-wrap">
+			<div class="horizontal-align-middle">
+				<div class="auth-box ">
+					<div class="left">
+						<div class="content">
+							<div class="header">
+								<h1><b>BRABEX</b> Login</h1>
+                            </div>
+                            <p>Não possui cadastro? Cadastre-se agora clicando <a href="#">aqui</a>.</p>
+                            <form class="form-auth-small" action="">
+								<div class="form-group">
+									<label for="id_landing_username" class="control-label sr-only">Usuário</label>
+									<input type="text" class="form-control" id="id_landing_username" value="" placeholder="Usuário">
+								</div>
+								<div class="form-group">
+									<label for="id_landing_password" class="control-label sr-only">Senha</label>
+									<input type="password" class="form-control" id="id_landing_password" value="" placeholder="Senha">
+								</div>
+								<button id="id_landing_signin" class="btn btn-primary btn-lg btn-block">Acessar</button>
+								<div class="bottom">
+									<span class="helper-text"><i class="fa fa-lock"></i> <a href="#">Esqueceu a senha?</a></span>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="right">
+						<div class="overlay"></div>
+						<div class="content text login-block">
+							<h1 class="heading">BRABEX  Brazilian Bitcoin Exchange</h1>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+
   </div>
 
-    <div class="bitex-display-if-logged">
+  <div class="bitex-display-if-logged">
         <div class="alert | bitex-model" style="display: none" data-model-key="IsMissingVerification" data-model-action="show_element">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <a href="" data-switch-view="verification"> {% t views.alerts.verification %} </a>
