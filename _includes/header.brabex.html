@@ -75,10 +75,11 @@
 
         <div class="container-fluid">
             <div class="navbar-btn navbar-btn-right">
-                <a class="btn btn-blue" href="#" title="Cadastrar"><span>Cadastrar</span></a>
-                <a class="btn btn-primary" href="#" title="Login"><span>Login</span></a>
+                <a class="btn btn-blue bitex-hide-if-logged" href="#" title="Cadastrar"><span>Cadastrar</span></a>
+                <a class="btn btn-primary bitex-hide-if-logged" href="#" title="Login"><span>Login</span></a>
+            {% if page.load_application %}
                 <a id="id_button_connect_ws"  class="btn btn-primary bitex-hide-if-ws-connected btn-link" href="#" title="Connect"><span>{% t views.toolbar.connect %} </span></a>
-
+            {% endif %}
             </div>
         </div>
 

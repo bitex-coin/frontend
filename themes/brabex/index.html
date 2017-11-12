@@ -18,7 +18,7 @@ load_application:       True
 							<div class="header">
 								<h1><b>BRABEX</b> Login</h1>
                             </div>
-                            <p>Não possui cadastro? Cadastre-se agora clicando <a href="#">aqui</a>.</p>
+                            <p>Não possui cadastro? Cadastre-se agora clicando <a href="#" data-switch-view="forgot_password">aqui</a>.</p>
                             <form class="form-auth-small" action="">
 								<div class="form-group">
 									<label for="id_landing_username" class="control-label sr-only">Usuário</label>
@@ -30,7 +30,7 @@ load_application:       True
 								</div>
 								<button id="id_landing_signin" class="btn btn-primary btn-lg btn-block">Acessar</button>
 								<div class="bottom">
-									<span class="helper-text"><i class="fa fa-lock"></i> <a href="#">Esqueceu a senha?</a></span>
+									<span class="helper-text"><i class="fa fa-lock"></i> <a data-switch-view="forgot_password" href="#">Esqueceu a senha?</a></span>
 								</div>
 							</form>
 						</div>
