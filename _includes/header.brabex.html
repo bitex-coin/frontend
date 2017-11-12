@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+<html class="fullscreen-bg" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>
     <meta charset="utf-8">
     {% assign exchange = "exchanges." | append: site.exchange %}
@@ -81,7 +81,27 @@
                 <a id="id_button_connect_ws"  class="btn btn-primary bitex-hide-if-ws-connected btn-link" href="#" title="Connect"><span>{% t views.toolbar.connect %} </span></a>
             {% endif %}
             </div>
+
+            <div class="nav navbar-nav navbar-right">
+             <li class="dropdown bitex-display-if-logged">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="{{ site.url }}{{ site.baseurl }}/assets/themes/brabex/img/user.png" class="img-circle" alt="Avatar">
+                            <span>Usuário</span>
+                            <i class="icon-submenu lnr lnr-chevron-down"></i>
+                            <i class="icon-submenu-flat lnr lnr-menu"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#profile" data-switch-view="profile"><i class="lnr lnr-user"></i> <span>Meu Perfil</span></a></li>
+                        <li><a href="#my_broker" data-switch-view="my_broker"><i class="lnr lnr-cog"></i> <span>Configurações</span></a></li>
+                        <li><a href="javascript:location.reload()" ><i class="lnr lnr-exit"></i> <span>Sair</span></a></li>
+                    </ul>
+            </li>
+
+                                            </div>
+
         </div>
+
+
 
     </nav>
     <div class="clearfix" style="padding: 30px;"></div>
