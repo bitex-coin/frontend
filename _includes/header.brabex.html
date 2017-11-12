@@ -75,8 +75,8 @@
 
         <div class="container-fluid">
             <div class="navbar-btn navbar-btn-right">
-                <a class="btn btn-blue bitex-hide-if-logged" href="#" data-switch-view="signup" title="Cadastrar"><span>Cadastrar</span></a>
-                <a class="btn btn-primary bitex-hide-if-logged" href="#" data-switch-view="start" title="Login"><span>Login</span></a>
+                <a class="btn btn-blue bitex-hide-if-logged" href="#signup" data-switch-view="signup" title="Cadastrar"><span>Cadastrar</span></a>
+                <a class="btn btn-primary bitex-hide-if-logged" href="#start" data-switch-view="start" title="Login"><span>Login</span></a>
             {% if page.load_application %}
                 <a id="id_button_connect_ws"  class="btn btn-primary bitex-hide-if-ws-connected btn-link" href="#" title="Connect"><span>{% t views.toolbar.connect %} </span></a>
             {% endif %}
@@ -84,7 +84,6 @@
         </div>
 
     </nav>
-
     <div class="clearfix" style="padding: 30px;"></div>
 
     <div id="id_notifications" class="notifications top-right" style="z-index: 9000;"></div>
