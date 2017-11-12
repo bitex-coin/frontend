@@ -108,12 +108,12 @@ bitex.view.SideBarView.prototype.enterDocument = function() {
       if (model.get('IsBroker')) {
         var broker_balance_model_key = 'Balance_' + model.get('UserID') +  '_' + model.get('UserID');
         handler.listenOnce( model, bitex.model.Model.EventType.SET + broker_balance_model_key, function(e){
-          goog.dom.removeChildren( goog.dom.getElement("id_account_summary_content"));
+/*          goog.dom.removeChildren( goog.dom.getElement("id_account_summary_content"));
           var account_boxes = [];
           account_boxes.push({
             'title': MSG_MY_CUSTOMERS_ACCOUNT_BALANCE_LABEL,
             'balances': []
-          });
+          }); */
 
           goog.array.forEach(model.get('Profile')['BrokerCurrencies'], function(currency) {
             account_boxes[account_boxes.length-1]['balances'].push({
@@ -160,17 +160,17 @@ bitex.view.SideBarView.prototype.enterDocument = function() {
               },this);
             }, this);
           }
-          goog.soy.renderElement(goog.dom.getElement('id_account_summary_content'),
+/*          goog.soy.renderElement(goog.dom.getElement('id_account_summary_content'),
                                  bitex.view.SideBarView.templates.YourAccountSummary, {
                                   id: this.makeId('summary'),
                                   boxes: account_boxes
-                                });
+                                }); */
           model.updateDom();
         }, this);
       } else {
         var balance_model_key = 'Balance_' + model.get('Broker')['BrokerID'] +  '_' + model.get('UserID');
         handler.listenOnce( model, bitex.model.Model.EventType.SET + balance_model_key, function(e){
-          goog.dom.removeChildren( goog.dom.getElement("id_account_summary_content"));
+          //goog.dom.removeChildren( goog.dom.getElement("id_account_summary_content"));
 
           var account_boxes = [];
 
@@ -197,11 +197,11 @@ bitex.view.SideBarView.prototype.enterDocument = function() {
 
           }, this);
 
-          goog.soy.renderElement(goog.dom.getElement('id_account_summary_content'),
+/*          goog.soy.renderElement(goog.dom.getElement('id_account_summary_content'),
                                  bitex.view.SideBarView.templates.YourAccountSummary, {
                                   id: this.makeId('summary'),
                                   boxes: account_boxes
-                                });
+                                }); */
 
           this.showPortfolioValue_();
           model.updateDom();
@@ -219,28 +219,28 @@ bitex.view.SideBarView.prototype.enterDocument = function() {
     }, this);
 
 
-    goog.dom.removeChildren(goog.dom.getElement('id_instrument_1'));
+/*    goog.dom.removeChildren(goog.dom.getElement('id_instrument_1'));
     goog.array.forEach(msg['Instruments'], function( instrument) {
       if (instrument['Market'] == 'BITEX') {
         var el = goog.dom.createDom('option', {'value': instrument['Symbol'] }, instrument['Description']);
         goog.dom.appendChild( goog.dom.getElement('id_instrument_1'), el );
       }
-    }, this);
+    }, this); */
 
   },this);
 
 
-  handler.listen( model,  bitex.model.Model.EventType.SET + 'AllowedMarkets', function(e) {
+/*  handler.listen( model,  bitex.model.Model.EventType.SET + 'AllowedMarkets', function(e) {
     var allowed_markets = model.get('AllowedMarkets');
 
     var allowed_markets_array = goog.object.getKeys(allowed_markets);
     if (allowed_markets_array.length > 0 ) {
       goog.dom.forms.setValue(goog.dom.getElement('id_instrument_1'), allowed_markets_array[0] );
       this.dispatchEvent(bitex.view.SideBarView.EventType.CHANGE_MARKET);
-    }
-  }, this);
+    } 
+  }, this);  */
 
-  handler.listen(goog.dom.getElement('id_instrument_1'), goog.events.EventType.CHANGE  , function(e) {
+/*  handler.listen(goog.dom.getElement('id_instrument_1'), goog.events.EventType.CHANGE  , function(e) {
     var symbol = this.getSymbol();
     var currency = this.getApplication().getPriceCurrencyFromSymbol(symbol);
 
@@ -248,7 +248,7 @@ bitex.view.SideBarView.prototype.enterDocument = function() {
 
     this.dispatchEvent(bitex.view.SideBarView.EventType.CHANGE_MARKET);
 
-  }, this);
+  }, this); */
 
   /*
   handler.listen( this.getElement(), goog.events.EventType.CLICK, function(e){
@@ -354,6 +354,6 @@ bitex.view.SideBarView.prototype.getSecurities = function(){
  * @return {string}
  */
 bitex.view.SideBarView.prototype.getSymbol = function() {
-  return goog.dom.forms.getValue(goog.dom.getElement('id_instrument_1') );
+  return "BTCBRL";
 };
 

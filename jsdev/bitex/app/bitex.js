@@ -1505,8 +1505,8 @@ bitex.app.Bitex.prototype.onBitexVerifyCustomerUpdate_ = function(e) {
 
   if (old_verified == 0 && profile['Verified'] == 1  ) {
     if (!this.getModel().get('IsBroker')){
-      //this.router_.setView('offerbook');
-      this.router_.setView('trading');
+      this.router_.setView('offerbook');
+      //this.router_.setView('trading');
       this.showNotification('success', MSG_NOTIFICATION_VERIFY_TITLE, MSG_PENDING_VERIFICATION_CONTENT);
     }
   } else if (profile['Verified'] == 2  ) {
