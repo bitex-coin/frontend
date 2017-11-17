@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html class="fullscreen-bg" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+  <head>
+    <meta charset="utf-8">
+    {% assign exchange = "exchanges." | append: site.exchange %}
+    {% assign title = exchange | append: ".title" %}
+    <title> {% t title %} </title>
+
+    <!-- Meta -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="author" content="{{ site.author }}">
+
+    {% assign description = exchange | append: ".description" %}
+    {% assign keywords = exchange    | append: ".keywords" %}
+
+    <meta name="description" content="{% t description %}">
+    <meta name="keywords" content="{% t keywords %}">
+    <meta property="og:title" content="{% t title %}">
+    <meta property="og:description" content="{% t description %}">
+
+    <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+    <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{% if page.url != '/index.html' %}{{ page.url }}{% endif %}">
+    <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/exchange_logos/{{ site.exchange_logo }}_social_network_share.png">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ site.url }}{{ site.baseurl }}/assets/exchange_logos/{{ site.exchange_logo }}_favicon.ico">
+    <link rel="icon" href="{{ site.url }}{{ site.baseurl }}/assets/exchange_logos/{{ site.exchange_logo }}_favicon.ico" type="image/x-icon">
+
+    <!-- Feed -->
+    <link rel="alternate" type="application/rss+xml" href="{{ site.url }}{{ site.baseurl }}/feed.xml">
+
+    <meta charset="utf-8">
+
+    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{% if page.url != '/index.html' %}{{ page.url }}{% endif %}"/>
+    <script type="text/javascript" src="//apis.google.com/js/plusone.js"></script>
+
+	<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="{{ site.url }}{{ site.baseurl }}/assets/themes/brabex/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{ site.url }}{{ site.baseurl }}/assets/themes/brabex/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{ site.url }}{{ site.baseurl }}/assets/themes/brabex/vendor/linearicons/style.css">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="{{ site.url }}{{ site.baseurl }}/assets/themes/brabex/css/main.css">
+	<!-- GOOGLE FONTS -->
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<!-- ICONS -->
+	<link rel="apple-touch-icon" sizes="76x76" href="{{ site.url }}{{ site.baseurl }}/assets/themes/brabex/img/apple-icon.png">
+
+    {% if page.load_application %}
+    <link href="{{ site.url }}{{ site.baseurl }}/assets/themes/default/css/Dialog.css" rel="stylesheet">
+    <link href="{{ site.url }}{{ site.baseurl }}/assets/themes/default/css/fuelux.css" rel="stylesheet">
+    <link href="{{ site.url }}{{ site.baseurl }}/assets/themes/default/css/default.uni-form.css" rel="stylesheet">
+    <link href="{{ site.url }}{{ site.baseurl }}/assets/themes/default/css/style.css?v={{ site.deploy_version }}" rel="stylesheet">
+    <script data-cfasync="false" src="{{ site.url }}{{ site.baseurl }}/assets/js/bitex_app_trade.compiled.{{site.lang}}.default.js?v={{ site.deploy_version }}" type="text/javascript"></script>
+    <script src="{{ site.url }}{{ site.baseurl }}/assets/js/externs/qrcode.min.js"></script>
+    {% endif %}
+  </head>
+  <body class="{% if page.body_classes %} {{ page.body_classes }} {% endif %}">
+  <nav id="wrapper">
+
+    <nav id="id_toolbar" class="navbar navbar-default navbar-fixed-top">
+
+        <div class="brand">
+          {% if page.load_application %}
+          <a href="#" class="brand" data-switch-view="offerbook">
+            <img class="img-responsive logo" data-switch-view="offerbook" src="{{ site.url }}{{ site.baseurl }}/assets/themes/brabex/img/logo1.png">
+          </a>
+
+          {% else %}
+          <a class="brand" href="{{ site.url }}{{ site.baseurl }}/">
+            <img class="img-responsive logo" src="{{ site.url }}{{ site.baseurl }}/assets/themes/brabex/img/logo1.png">
+          </a>
+          {% endif %}
+        </div>
+
+        <div class="container-fluid">
+            <div class="navbar-btn navbar-btn-right">
+                <a class="btn btn-blue bitex-hide-if-logged" href="#signup" data-switch-view="signup" title="Cadastrar"><span>Cadastrar</span></a>
+                <a class="btn btn-primary bitex-hide-if-logged" href="#start" data-switch-view="start" title="Login"><span>Login</span></a>
+            {% if page.load_application %}
+                <a id="id_button_connect_ws"  class="btn btn-primary bitex-hide-if-ws-connected btn-link" href="#" title="Connect"><span>{% t views.toolbar.connect %} </span></a>
+            {% endif %}
+            </div>
+
+            <div class="nav navbar-nav navbar-right">
+             <li class="dropdown bitex-display-if-logged">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="{{ site.url }}{{ site.baseurl }}/assets/themes/brabex/img/user.png" class="img-circle" alt="Avatar">
+                            <span>Usuário</span>
+                            <i class="icon-submenu lnr lnr-chevron-down"></i>
+                            <i class="icon-submenu-flat lnr lnr-menu"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#profile" data-switch-view="profile"><i class="lnr lnr-user"></i> <span>Meu Perfil</span></a></li>
+                        <li><a href="#my_broker" data-switch-view="my_broker"><i class="lnr lnr-cog"></i> <span>Configurações</span></a></li>
+                        <li><a href="javascript:location.reload()" ><i class="lnr lnr-exit"></i> <span>Sair</span></a></li>
+                    </ul>
+            </li>
+
+                                            </div>
+
+        </div>
+
+
+
+    </nav>
+    <div class="clearfix" style="padding: 30px;"></div>
+
+    <div id="id_notifications" class="notifications top-right" style="z-index: 9000;"></div>
+
+
