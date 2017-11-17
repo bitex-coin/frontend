@@ -4042,7 +4042,7 @@ bitex.app.Bitex.prototype.onUserLoginOk_ = function(e) {
   }
 
 
-  if (goog.isDefAndNotNull($zopim) && goog.isDefAndNotNull($zopim.livechat)) {
+  /*if (goog.isDefAndNotNull($zopim) && goog.isDefAndNotNull($zopim.livechat)) {
     var tags = 'VerificationLevel:';
     switch(profile['Verified']) {
       case 0:
@@ -4073,7 +4073,7 @@ bitex.app.Bitex.prototype.onUserLoginOk_ = function(e) {
     $zopim.livechat.setName( this.getModel().get('DisplayName') );
     $zopim.livechat.setEmail(profile['Email']);
     $zopim.livechat.addTags(tags);
-  }
+  } */
 
 
   this.conn_.requestBalances();
