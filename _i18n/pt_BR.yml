@@ -78,7 +78,7 @@ views:
         icon: ico-decentralized
         description: Somos membros da rede global da <a href="https://Bitex.com" target="_BLANK">Bitex</a>, rede que integra <a href="https://foxbit.com.br/" target="_BLANK">FOXBIT</a> no Brasil, <a href="https://surbitcoin.com/" target="_BLANK">SurBitcoin</a> na Venezuela, <a href="https://chilebit.net/" target="_BLANK">ChileBit.NET</a> no Chile, <a href="https://urdubit.com/" target="_BLANK">UrduBit</a> no Paquistão e <a href="https://vbtc.vn/" target="_BLANK">VBTC</a> no Vietnã junto com outras empresas, formadores de mercado, empresas de remessa de valores, processadoras de pagamento. Operando conosco, você terá acesso a toda rede mundial de exchanges com suporte local.
     orderbook:
-      title: Livro de ofertas 
+      title: Comprar e Vender
     signup:
       title: CRIE A SUA CONTA AGORA
       description: Registre-se e descubra o como é fácil negociar conosco. 
@@ -101,13 +101,14 @@ views:
     high: Máxima 
     last: Último 
     low: Mínima
+    variation: Variação
     volume: Volume
 
   start:
     bid: Compra
     ask: Venda
-    username: "Login:"
-    password: "Senha:"
+    username: "Login"
+    password: "Senha"
     login: Entrar
     signup: Cadastrar
 
@@ -143,7 +144,7 @@ views:
 
   forgot_password:
     title: Recuperação da senha
-    email: Email
+    email: E-mail
     recover_password_button_label: Recuperar senha
 
   set_new_password:
@@ -157,6 +158,7 @@ views:
 
   profile:
     title: Meu Perfil
+    configurations: Configurações Pessoais
     two_factor_auth_section:
       title: Autenticação em 2 passos (2FA)
       key: Chave
@@ -167,10 +169,10 @@ views:
       disable: Desabilitar
 
   trading:
-    title: Comprar ou Vender
+    title: Investir Agora
 
   offerbook:
-    title: Livro de ofertas
+    title: Comprar e Vender
     cumulative: Acumulado
     fees: Taxas
 
@@ -185,7 +187,7 @@ views:
     set_user_fees_button_label: Definir taxas personalizadas
 
   withdraw:
-    title: Saques
+    title: Financeiro - Saques
 
   withdraw_requests:
     title: Pedidos de saques
@@ -194,13 +196,13 @@ views:
     title: Formas de Resgate
 
   deposit:
-    title: Depósitos
+    title: Financeiro - Depósitos
 
   deposit_requests:
     title: Pedidos de depósitos
 
   ledger:
-    title: Livro contábil
+    title: Financeiro - Extrato
 
   algotrading:
     title: Algo Trading
@@ -213,7 +215,7 @@ views:
     title: Configurações
 
   verification:
-    title: Verificar a sua conta
+    title: Confirmar meus dados
 
   market:
     title: Mercado
@@ -227,7 +229,7 @@ views:
     title: Linha de crédito
 
   history:
-    title: Histórico de ordens
+    title: Minhas Ordens
 
   partners:
     title: Use os seus Bitcoins
@@ -242,9 +244,10 @@ views:
     navigation: Navegação
     menu: Menu
     my_profile: Meu perfil
+    home: E agora, o que fazer?
     my_broker: Configurações
-    trading: Comprar ou Vender
-    offerbook: Livro de ofertas
+    trading: Investir Agora - Básico
+    offerbook: Comprar e Vender - Trader
     partners: Use os seus Bitcoins
     ledger: Extrato
     customers: Meus clientes
@@ -252,13 +255,13 @@ views:
     withdraw_requests: Saques ( clientes )
     deposit: Depósitos
     withdraw: Saques
-    verification: Verificar a sua conta
+    verification: Confirmar meus dados
     line_of_credit: Linha de crédito
     support: Suporte e Sugestões
     api: API
     logout: Sair
     algotrading: Algo Trading
-    history: Histórico de ordens
+    history: Minhas Ordens
     card:  Blink Card
   themes:
     title: Temas

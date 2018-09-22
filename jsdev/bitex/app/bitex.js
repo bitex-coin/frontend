@@ -69,7 +69,7 @@ goog.require('goog.debug');
 goog.require('bitex.view.NullView');
 goog.require('bitex.view.AdminView');
 goog.require('bitex.view.SignupView');
-goog.require('bitex.view.LoginView');
+//goog.require('bitex.view.LoginView');
 goog.require('bitex.view.StartView');
 goog.require('bitex.view.ForgotPasswordView');
 goog.require('bitex.view.SetNewPasswordView');
@@ -342,7 +342,7 @@ bitex.app.Bitex.prototype.dialog_;
 /**
  * @type {bitex.view.LoginView}
  */
-bitex.app.Bitex.prototype.loginView_;
+//bitex.app.Bitex.prototype.loginView_;
 
 /**
  * @type {bitex.view.LoginView}
@@ -440,6 +440,34 @@ bitex.app.Bitex.validateBitcoinAddress_ = function(el, condition, minLength, cap
 
 };
 
+
+/**
+ * @type {Element}
+ */
+bitex.app.Bitex.prototype.username_el_;
+
+/**
+ * @type {Element}
+ */
+bitex.app.Bitex.prototype.password_el_;
+
+
+
+/**
+ * @return {string}
+ */
+bitex.app.Bitex.prototype.getUsername = function() {
+  return goog.dom.forms.getValue(this.username_el_);
+};
+
+/**
+ * @return {string}
+ */
+bitex.app.Bitex.prototype.getPassword = function() {
+  return goog.dom.forms.getValue(this.password_el_);
+};
+
+
 /**
  * @param {string} host_api
  */
@@ -458,8 +486,9 @@ bitex.app.Bitex.prototype.run = function(host_api) {
   var twoFactorView       = new bitex.view.TwoFactor(this);
   var faqView             = new bitex.view.NullView(this);
   var themesView          = new bitex.view.NullView(this);
+  var homeView            = new bitex.view.NullView(this);
   var setNewPasswordView  = new bitex.view.SetNewPasswordView(this);
-  var loginView           = new bitex.view.LoginView(this);
+//  var loginView           = new bitex.view.LoginView(this);
   var signUpView          = new bitex.view.SignupView(this);
   var forgotPasswordView  = new bitex.view.ForgotPasswordView(this);
   var depositView         = new bitex.view.DepositView(this, false);
@@ -491,9 +520,10 @@ bitex.app.Bitex.prototype.run = function(host_api) {
   this.views_.addChild( adminView           );
   this.views_.addChild( twoFactorView       );
   this.views_.addChild( faqView             );
+  this.views_.addChild( homeView            );
   this.views_.addChild( themesView          );
   this.views_.addChild( setNewPasswordView  );
-  this.views_.addChild( loginView           );
+//  this.views_.addChild( loginView           );
   this.views_.addChild( signUpView          );
   this.views_.addChild( forgotPasswordView  );
   this.views_.addChild( tradingView         );
@@ -519,10 +549,11 @@ bitex.app.Bitex.prototype.run = function(host_api) {
 
   startView.decorate(goog.dom.getElement('start'));
   faqView.decorate(goog.dom.getElement('faq'));
+  homeView.decorate(goog.dom.getElement('home'));
   themesView.decorate(goog.dom.getElement('themes'));
   sideBarView.decorate(goog.dom.getElement('id_sidebar'));
   toolBarView.decorate(goog.dom.getElement('id_toolbar'));
-  loginView.decorate(goog.dom.getElement('signin'));
+//  loginView.decorate(goog.dom.getElement('signin'));
   signUpView.decorate(goog.dom.getElement('signup'));
   this.views_.decorate(document.body);
 
@@ -532,10 +563,11 @@ bitex.app.Bitex.prototype.run = function(host_api) {
   this.router_.addView( '(admin_view)'                  , adminView           );
   this.router_.addView( '(twofactor)'                   , twoFactorView       );
   this.router_.addView( '(faq)'                         , faqView             );
+  this.router_.addView( '(home)'                         , homeView             );
   this.router_.addView( '(themes)'                      , themesView          );
   this.router_.addView( '(admin)'                       , startView           );
   this.router_.addView( '(set_new_password)'            , setNewPasswordView  );
-  this.router_.addView( '(signin)'                      , loginView           );
+//  this.router_.addView( '(signin)'                      , loginView           );
   this.router_.addView( '(signup)'                      , signUpView          );
   this.router_.addView( '(forgot_password)'             , forgotPasswordView  );
   this.router_.addView( '(algotrading)'                 , algorithmTradingView);
@@ -608,7 +640,6 @@ bitex.app.Bitex.prototype.run = function(host_api) {
 
   // Listen to the views
   handler.listen(signUpView, bitex.view.SignupView.EventType.SIGNUP, this.onUserSignupButton_ );
-  handler.listen(loginView, bitex.view.LoginView.EventType.LOGIN, this.onUserLoginButtonClick_) ;
 
   handler.listen(this.views_, bitex.view.View.EventType.ENABLE_TWOFACTOR, this.onUserEnableTwoFactor_);
   handler.listen(this.views_, bitex.view.View.EventType.DISABLE_TWOFACTOR, this.onUserDisableTwoFactor_);
@@ -661,7 +692,11 @@ bitex.app.Bitex.prototype.run = function(host_api) {
   handler.listen(this.getModel(),
                   bitex.model.Model.EventType.SET + "AvailableBalance", this.onUpdateAvailableBalance_ );
 
-
+  handler.listen( goog.dom.getElement('id_landing_signin'), 'click', function(e){
+    e.stopPropagation();
+    e.preventDefault();
+    this.onLoginClick_( goog.dom.getElement("id_landing_username"),goog.dom.getElement("id_landing_password") );
+  } ) ;
 
   var initial_view = 'start';
   if (!goog.string.isEmpty(location.hash)){
@@ -671,7 +706,7 @@ bitex.app.Bitex.prototype.run = function(host_api) {
   this.router_.setView(initial_view);
   this.router_.init();
 
-  this.loginView_ = loginView;
+//  this.loginView_ = loginView;
   this.profileView_ = profileView;
 
 
@@ -691,6 +726,39 @@ bitex.app.Bitex.prototype.run = function(host_api) {
 
 };
 
+bitex.app.Bitex.prototype.onLoginClick_ = function( username_el, password_el ) {
+  this.username_el_ = username_el;
+  this.password_el_ = password_el;
+
+  var username = this.getUsername();
+  var password = this.getPassword();
+
+  if (goog.string.isEmpty(username) ) {
+    /**
+     * @desc Invalid Username Alert error message when pushing the login button
+     */
+    var MSG_LOGIN_VIEW_INVALID_USERNAME = goog.getMsg('Invalid username');
+    //this.showDialog( MSG_LOGIN_VIEW_INVALID_USERNAME );
+    Notify.setOptions({type: 'danger'}).send(MSG_LOGIN_VIEW_INVALID_USERNAME);
+
+    this.username_el_.focus();
+    return;
+   }
+  if ( goog.string.isEmpty(password)  || password.length < 8) {
+    /**
+     * @desc Invalid Password Alert error message when pushing the login button
+     */
+    var MSG_LOGIN_VIEW_INVALID_PASSWORD = goog.getMsg('Password must have at least 8 characters');
+    Notify.setOptions({type: 'danger'}).send(MSG_LOGIN_VIEW_INVALID_PASSWORD);
+    //this.showDialog( MSG_LOGIN_VIEW_INVALID_PASSWORD );
+    this.password_el_.focus();
+    return;
+  }
+
+  this.onUserLoginButtonClick_();
+};
+
+
 bitex.app.Bitex.prototype.onBitexSecurityStatus_ = function(e) {
   var msg = e.data;
 
@@ -702,6 +770,7 @@ bitex.app.Bitex.prototype.onBitexSecurityStatus_ = function(e) {
   if ('VWAP' in msg) {
     vwap = msg["VWAP"];
   }
+  var variation = parseInt((msg["LastPx"]-msg["OpenPx"])/msg["OpenPx"] * 1.e8,10);
 
   model.set(msg['Market'] + '_' + msg['Symbol'] + '_VWAP',vwap, true);
   model.set(msg['Market'] + '_' + msg['Symbol'] + '_VOLUME', msg["SellVolume"], true);
@@ -712,7 +781,12 @@ bitex.app.Bitex.prototype.onBitexSecurityStatus_ = function(e) {
   model.set(msg['Market'] + '_' + msg['Symbol'] + '_BEST_BID',msg["BestBid"], true);
   model.set(msg['Market'] + '_' + msg['Symbol'] + '_BEST_ASK',msg["BestAsk"], true);
   model.set(msg['Market'] + '_' + msg['Symbol'] + '_LAST_PX',msg["LastPx"], true);
+  model.set(msg['Market'] + '_' + msg['Symbol'] + '_OPEN_PX',msg["OpenPx"], true);
+  model.set(msg['Market'] + '_' + msg['Symbol'] + '_VARIATION',variation, true);
 
+  var percent_fmt = new goog.i18n.NumberFormat(goog.i18n.NumberFormat.Format.PERCENT);
+  percent_fmt.setMaximumFractionDigits(2);
+  percent_fmt.setMinimumFractionDigits(2);
 
   model.set('formatted_' + msg['Market'] + '_' + msg['Symbol'] + '_VWAP',this.formatCurrency(vwap/1.e8, currency, true), true);
   model.set('formatted_' + msg['Market'] + '_' + msg['Symbol'] + '_VOLUME',this.formatCurrency(msg["SellVolume"]/1.e8,crypto_currency, true), true);
@@ -723,6 +797,8 @@ bitex.app.Bitex.prototype.onBitexSecurityStatus_ = function(e) {
   model.set('formatted_' + msg['Market'] + '_' + msg['Symbol'] + '_BEST_BID',this.formatCurrency(msg["BestBid"]/1.e8,currency, true ), true);
   model.set('formatted_' + msg['Market'] + '_' + msg['Symbol'] + '_BEST_ASK',this.formatCurrency(msg["BestAsk"]/1.e8,currency, true ), true);
   model.set('formatted_' + msg['Market'] + '_' + msg['Symbol'] + '_LAST_PX',this.formatCurrency(msg["LastPx"]/1.e8,currency, true ), true);
+  model.set('formatted_' + msg['Market'] + '_' + msg['Symbol'] + '_OPEN_PX',this.formatCurrency(msg["OpenPx"]/1.e8,currency, true ), true);
+  model.set('formatted_' + msg['Market'] + '_' + msg['Symbol'] + '_VARIATION',percent_fmt.format(variation/1.e8), true);
 
   this.calculatePortfolioValue(currency);
   this.calculatePortfolioValue(crypto_currency);
@@ -1489,7 +1565,6 @@ bitex.app.Bitex.prototype.onBitexVerifyCustomerUpdate_ = function(e) {
   this.getModel().set('IsMissingVerification',profile['Verified'] == 0);
   this.getModel().set('IsAccountBlocked',     profile['Verified'] < 0);
 
-
   /** @desc verification notification title msg */
   var MSG_NOTIFICATION_VERIFY_TITLE = goog.getMsg('Verification:');
 
@@ -1505,8 +1580,7 @@ bitex.app.Bitex.prototype.onBitexVerifyCustomerUpdate_ = function(e) {
 
   if (old_verified == 0 && profile['Verified'] == 1  ) {
     if (!this.getModel().get('IsBroker')){
-      this.router_.setView('offerbook');
-      //this.router_.setView('trading');
+      this.router_.setView('home');
       this.showNotification('success', MSG_NOTIFICATION_VERIFY_TITLE, MSG_PENDING_VERIFICATION_CONTENT);
     }
   } else if (profile['Verified'] == 2  ) {
@@ -1624,7 +1698,6 @@ bitex.app.Bitex.prototype.onBitexExecutionReport_ = function(e) {
   var MSG_NOTIFICATION_ORDER_REJECTED = goog.getMsg('rejected - {$err}', {err:msg['OrdRejReason']});
 
   var should_beep = false;
-
   switch( msg['ExecType'] ) {
     case '1':  //Partial Execution
       should_beep = true;
@@ -2837,7 +2910,7 @@ bitex.app.Bitex.prototype.onUserOrderEntry_ = function(e){
   if (goog.isDefAndNotNull(this.getModel().get('Profile')['ConfirmationOrder'])){
     confirmationOrder = this.getModel().get('Profile')['ConfirmationOrder'];
   }
-  if (confirmationOrder === true) {
+//  if (confirmationOrder === true) {
     /**
      * @desc dialog shown when user send an order
      */
@@ -2861,9 +2934,9 @@ bitex.app.Bitex.prototype.onUserOrderEntry_ = function(e){
         this.executeOrder();
       }
     }, this);
-  } else {
-    this.executeOrder();
-  }
+//  } else {
+//    this.executeOrder();
+//  }
 };
 
 /**
@@ -3034,7 +3107,7 @@ bitex.app.Bitex.prototype.onUserUploadReceipt_ = function(e){
 
 
   var upload_form_url =  broker['UploadForm'];
-  if (deposit_method) {
+  if (!goog.isDefAndNotNull(deposit_method)) {
     upload_form_url = deposit_method.user_receipt_url;
   }
 
@@ -3833,6 +3906,11 @@ bitex.app.Bitex.prototype.onUserEnableTwoFactor_ = function(e){
 
       this.showDialog(MSG_ERROR_SETTING_TWO_FACTOR);
     }
+
+    if(msg['TwoFactorEnabled']) {
+        var total_alerts = this.getModel().get('number_of_alerts');
+        this.getModel().set('number_of_alerts', total_alerts-1);
+    }
   }, this);
 };
 
@@ -3841,6 +3919,9 @@ bitex.app.Bitex.prototype.onUserEnableTwoFactor_ = function(e){
  * @private
  */
 bitex.app.Bitex.prototype.onUserDisableTwoFactor_ = function(e){
+  var total_alerts = this.getModel().get('number_of_alerts');
+  this.getModel().set('number_of_alerts', total_alerts+1);
+
   this.conn_.enableTwoFactor( false );
 };
 
@@ -3929,9 +4010,9 @@ bitex.app.Bitex.prototype.onBodyChange_ =function(e){
  * @private
  */
 bitex.app.Bitex.prototype.onUserLoginButtonClick_ = function(e){
-  var username = e.target.getUsername();
-  var password = e.target.getPassword();
-  this.model_.set('Password',         e.target.getPassword() );
+  var username = this.getUsername();
+  var password = this.getPassword();
+  this.model_.set('Password',         this.getPassword() );
 
   var requestId = this.conn_.login(this.getModel().get('SelectedBrokerID'),
                                    username,
@@ -3949,6 +4030,22 @@ bitex.app.Bitex.prototype.onUserLoginButtonClick_ = function(e){
  */
 bitex.app.Bitex.prototype.onUserLoginOk_ = function(e) {
   var msg = e.data;
+  var total_alerts = 0;
+  var is_verified = (msg['Profile']['Verified'] > 1) ;
+  var missing_verification = msg['Profile']['Verified'] == 0;
+  var account_blocked = msg['Profile']['Verified'] < 0;
+
+  if(missing_verification) {
+    total_alerts = total_alerts+1;
+  }
+  if(account_blocked) {
+    total_alerts = total_alerts+1;
+  }
+  if(!msg['TwoFactorEnabled']) {
+    total_alerts = total_alerts+1;
+  }
+
+  this.getModel().set('number_of_alerts', total_alerts);
 
   goog.dom.classes.add( document.body, 'bitex-logged'  );
   goog.dom.classes.remove( document.body, 'bitex-not-logged' );
@@ -3959,9 +4056,9 @@ bitex.app.Bitex.prototype.onUserLoginOk_ = function(e) {
   this.getModel().set('Email',            msg['Email']);
   this.getModel().set('TwoFactorEnabled', msg['TwoFactorEnabled']);
   this.getModel().set('IsBroker',         msg['IsBroker'] );
-  this.getModel().set('IsVerified',       msg['Profile']['Verified'] > 1);
-  this.getModel().set('IsMissingVerification', msg['Profile']['Verified'] == 0);
-  this.getModel().set('IsAccountBlocked', msg['Profile']['Verified'] < 0);
+  this.getModel().set('IsVerified',       is_verified);
+  this.getModel().set('IsMissingVerification', missing_verification);
+  this.getModel().set('IsAccountBlocked', account_blocked);
   this.getModel().set('IsMSB',            msg['IsMSB']);
   this.getModel().set('HasLineOfCredit',  msg['HasLineOfCredit']);
   this.getModel().set('EmailLang',        msg['EmailLang']);
@@ -3986,6 +4083,8 @@ bitex.app.Bitex.prototype.onUserLoginOk_ = function(e) {
   }
 
   var profile = msg['Profile'];
+  //console.log(msg);
+  //console.log(msg['Profile'])
   if (msg['IsBroker'] ) {
     goog.dom.classes.add( document.body, 'bitex-broker');
     profile = this.adjustBrokerData_(profile);
@@ -4042,38 +4141,38 @@ bitex.app.Bitex.prototype.onUserLoginOk_ = function(e) {
   }
 
 
-  /*if (goog.isDefAndNotNull($zopim) && goog.isDefAndNotNull($zopim.livechat)) {
-    var tags = 'VerificationLevel:';
-    switch(profile['Verified']) {
-      case 0:
-        tags += 'no';
-        break;
-      case 1:
-        tags += 'pending';
-        break;
-      case 2:
-        tags += 'processing';
-        break;
-      default:
-        tags += profile['Verified'] - 2;
-        break;
-    }
-    tags += ', TwoFactorEnabled:' + profile['TwoFactorEnabled'];
-    tags += ', UserID:' + profile['ID'];
-    tags += ', NeedWithdrawEmail:' + profile['NeedWithdrawEmail'];
-    tags += ', TransactionFeeBuy:' + profile['TransactionFeeBuy'];
-    tags += ', TransactionFeeSell:' + profile['TransactionFeeSell'];
-    tags += ', TakerTransactionFeeBuy:' + profile['TakerTransactionFeeBuy'];
-    tags += ', TakerTransactionFeeSell:' + profile['TakerTransactionFeeSell'];
-
-    if (  this.getModel().get('DisplayName') != this.getModel().get('Username') )  {
-      tags += ', Username:' + this.getModel().get('Username');
-    }
-
-    $zopim.livechat.setName( this.getModel().get('DisplayName') );
-    $zopim.livechat.setEmail(profile['Email']);
-    $zopim.livechat.addTags(tags);
-  } */
+//  if (goog.isDefAndNotNull($zopim) && goog.isDefAndNotNull($zopim.livechat)) {
+//    var tags = 'VerificationLevel:';
+//    switch(profile['Verified']) {
+//      case 0:
+//        tags += 'no';
+//        break;
+//      case 1:
+//        tags += 'pending';
+//        break;
+//      case 2:
+//        tags += 'processing';
+//        break;
+//      default:
+//        tags += profile['Verified'] - 2;
+//        break;
+//    }
+//    tags += ', TwoFactorEnabled:' + profile['TwoFactorEnabled'];
+//    tags += ', UserID:' + profile['ID'];
+//    tags += ', NeedWithdrawEmail:' + profile['NeedWithdrawEmail'];
+//    tags += ', TransactionFeeBuy:' + profile['TransactionFeeBuy'];
+//    tags += ', TransactionFeeSell:' + profile['TransactionFeeSell'];
+//    tags += ', TakerTransactionFeeBuy:' + profile['TakerTransactionFeeBuy'];
+//    tags += ', TakerTransactionFeeSell:' + profile['TakerTransactionFeeSell'];
+//
+//    if (  this.getModel().get('DisplayName') != this.getModel().get('Username') )  {
+//      tags += ', Username:' + this.getModel().get('Username');
+//    }
+//
+//    $zopim.livechat.setName( this.getModel().get('DisplayName') );
+//    $zopim.livechat.setEmail(profile['Email']);
+//    $zopim.livechat.addTags(tags);
+//  }
 
 
   this.conn_.requestBalances();
@@ -4109,7 +4208,7 @@ bitex.app.Bitex.prototype.onUserLoginOk_ = function(e) {
   this.conn_.requestDepositMethods( this.getModel().get('BrokerID') );
 
   //this.router_.setView('offerbook');
-  this.router_.setView('trading');
+  this.router_.setView('home');
 
   // Request Open Orders
   this.getModel().set('FinishedInitialOpenOrdersRequest',  false);
@@ -4238,8 +4337,8 @@ bitex.app.Bitex.prototype.onUserLoginError_ = function(e) {
             }
           } else {
             broker_id = this.getModel().get('SelectedBrokerID');
-            username = this.loginView_.getUsername();
-            password = this.loginView_.getPassword();
+            username = 'not available'; //this.loginView_.getUsername();
+            password = 'not available'; //this.loginView_.getPassword();
           };
           var requestId = this.conn_.login( broker_id, username, password, second_factor, trust_device );
           this.current_login_request_[requestId] = [ 'login', broker_id, username, password ]
@@ -4294,7 +4393,8 @@ bitex.app.Bitex.prototype.onUserLoginError_ = function(e) {
         break;
     }
 
-    this.showDialog( user_status_text );
+    this.showNotification('error', user_status_text);
+    //this.showDialog( user_status_text );
   }
 };
 
@@ -4356,7 +4456,7 @@ bitex.app.Bitex.prototype.onBeforeSetView_ = function(e){
     switch(view_id) {
       case 'start':
       case 'admin':
-      case 'signin':
+//      case 'signin':
       case 'signup':
       case 'faq':
       case 'themes':
@@ -4644,6 +4744,12 @@ bitex.app.Bitex.prototype.onSecurityList_ =   function(e) {
     this.model_.set(market + '_' + symbol + '_BEST_BID',0, true);
     this.model_.set(market + '_' + symbol + '_BEST_ASK',0, true);
     this.model_.set(market + '_' + symbol + '_LAST_PX',0, true);
+    this.model_.set(market + '_' + symbol + '_OPEN_PX',0, true);
+    this.model_.set(market + '_' + symbol + '_VARIATION',0, true);
+
+    var percent_fmt = new goog.i18n.NumberFormat(goog.i18n.NumberFormat.Format.PERCENT);
+    percent_fmt.setMaximumFractionDigits(2);
+    percent_fmt.setMinimumFractionDigits(2);
 
     this.model_.set('formatted_' + market + '_' + symbol + '_VWAP',this.formatCurrency(0, currency, true), true);
     this.model_.set('formatted_' + market + '_' + symbol + '_VOLUME',this.formatCurrency(0,crypto_currency, true ), true);
@@ -4654,6 +4760,8 @@ bitex.app.Bitex.prototype.onSecurityList_ =   function(e) {
     this.model_.set('formatted_' + market + '_' + symbol + '_BEST_BID', this.formatCurrency(0,currency, true ), true);
     this.model_.set('formatted_' + market + '_' + symbol + '_BEST_ASK',this.formatCurrency(0,currency, true ), true);
     this.model_.set('formatted_' + market + '_' + symbol + '_LAST_PX',this.formatCurrency(0,currency, true ), true);
+    this.model_.set('formatted_' + market + '_' + symbol + '_OPEN_PX',this.formatCurrency(0,currency, true ), true);
+    this.model_.set('formatted_' + market + '_' + symbol + '_VARIATION',percent_fmt.format(0), true);
   }, this );
 
   this.model_.set('SecurityList', msg);
@@ -4791,6 +4899,8 @@ bitex.app.Bitex.prototype.onBrokerListResponse_ =  function(e){
 
 
   this.model_.set('BrokerList', broker_list);
+
+  $.getScript( "/assets/themes/brabex/assets/scripts/klorofil-common.js", function( data, textStatus, jqxhr ) {});
 };
 
 /**
@@ -4983,310 +5093,17 @@ bitex.app.Bitex.prototype.showDialog = function(content, opt_title, opt_button_s
  * @param {boolean} opt_system
  */
 bitex.app.Bitex.prototype.showNotification = function(type , title, content,  opt_display_time, opt_system) {
-  if ( opt_system === true && "Notification" in window && Notification.permission === "granted" ) {
+
     if (type == 'error') {
-      new Notification('ERROR: ' + title + ' ' + content);
-    } else {
-      new Notification(title + ' ' + content);
+        type = 'danger';
     }
-    return;
-  }
 
-  var display_time = 3000;
-  if (type == 'error') {
-    display_time *= 3;
-  }
-  if ( goog.isNumber(opt_display_time) ) {
-    display_time = opt_display_time;
-  }
-
-  var alert_content = goog.dom.createDom( 'span', undefined,
-    [goog.dom.createDom( 'strong', undefined, title), ' ', content ] );
-
-  var notification = new bootstrap.Alert(type, alert_content, true );
-
-  notification.render( goog.dom.getElement('id_notifications') );
-
-  if (display_time > 0) {
-    var handler = this.getHandler();
-
-    goog.Timer.callOnce(function(e){
-      var anim = new goog.fx.dom.FadeOutAndHide(notification.getElement(), 200);
-      handler.listenOnce(anim, goog.fx.Transition.EventType.END, function(e) {
-        notification.dispose();
-        anim.dispose();
-      });
-      anim.play();
-    }, display_time, this);
-  }
-};
-
-/**
- * @param {string} algo_instance_id
- */
-bitex.app.Bitex.prototype.registerAlgorithmInstance = function(algo_instance_id) {
-  var handler = this.getHandler();
-
-  /**
-   * @desc starting algorithm notification message
-   */
-  var MSG_STARTING_ALGORITHM_NOTIFICATION = goog.getMsg('starting algorithm ....');
-  this.showNotification('info', MSG_STARTING_ALGORITHM_NOTIFICATION);
-
-
-  handler.listen(this.getModel(), bitex.model.Model.EventType.SET + algo_instance_id + '_params' , this.onAlgoParams_);
-  handler.listen(this.getModel(), bitex.model.Model.EventType.SET + algo_instance_id + '_status',  this.onAlgoStatusChange_);
-
-  var params          = this.getModel().get( algo_instance_id + '_params');
-  var algo            = this.getModel().get( algo_instance_id + '_algo');
-  var symbol          = this.getModel().get( algo_instance_id + '_symbol');
-  var tickers         = this.getModel().get( algo_instance_id + '_tickers');
-  var algo_definition = this.getModel().get( algo_instance_id + '_definition');
-
-  var open_orders_index = this.getModel().get('OpenOrdersIndex');
-  var open_orders = {};
-  if (goog.isDefAndNotNull(open_orders_index)) {
-    goog.array.forEach(open_orders_index, function(order_id){
-      open_orders[order_id] = this.getModel().get('order_' + order_id);
-    }, this);
-  }
-
-  var deposited_balance_broker = this.getModel().get('Balance')[this.getModel().get('SelectedBrokerID')][this.getModel().get('UserID')];
-  var locked_balance_broker = this.getModel().get('LockedBalance')[this.getModel().get('SelectedBrokerID')][this.getModel().get('UserID')];
-
-  var balance_broker = {};
-  goog.object.forEach(deposited_balance_broker, function( balance, currency ) {
-    balance_broker[currency] = balance;
-  }, this);
-  goog.object.forEach(locked_balance_broker, function( balance, currency ) {
-    balance_broker[currency + '_locked' ] = balance;
-  }, this);
-
-  /**
-   * @desc dialog shown to the user requesting his permissions to run the selected algorithm trading
-   */
-  var MSG_ALGO_REQUEST_PERMISSION = goog.getMsg('Authorize algorithm');
-
-  var algo_permissions = algo_definition['permissions'];
-
-  var dlg = this.showDialog(bitex.templates.AlgoPermissionsDialogContent({ permissions: algo_permissions} ),
-                             MSG_ALGO_REQUEST_PERMISSION,
-                             bitex.ui.Dialog.ButtonSet.createYesNo());
-
-  handler.listen(dlg, goog.ui.Dialog.EventType.SELECT, function(e) {
-    if (e.key == 'yes') {
-
-      var algo_sandbox = [
-        'var context = {\n',
-        '  "algo_instance_id": "' + algo_instance_id + '",\n',
-        '  "wss_url": "' + this.wss_url_ + '",\n',
-        '  "symbol": "' + symbol.symbol +  '",\n',
-        '  "tickers": ' + goog.json.serialize(tickers) + ',\n',
-        '  "open_orders": '+ goog.json.serialize(open_orders) +',\n',
-        '  "balance": ' + goog.json.serialize(balance_broker) + ',\n',
-        '  "algo_definition": ' + goog.json.serialize(algo_definition) + '\n',
-        '};\n',
-        '\n',
-        '\n',
-        algo,
-        '\n',
-        '\n',
-        'var f,l=this;function m(a){return void 0!==a}\n',
-        'function p(a){var b=typeof a;if("object"==b)if(a){if(a instanceof Array)return"array";if(a instanceof Object)return b;var c=Object.prototype.toString.call(a);if("[object Window]"==c)return"object";if("[object Array]"==c||"number"==typeof a.length&&"undefined"!=typeof a.splice&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("splice"))return"array";if("[object Function]"==c||"undefined"!=typeof a.call&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("call"))return"function"}else return"null";\n',
-        'else if("function"==b&&"undefined"==typeof a.call)return"object";return b}function q(a){return"array"==p(a)}function r(a){var b=p(a);return"array"==b||"object"==b&&"number"==typeof a.length}function t(a){return"string"==typeof a}function u(a){return"function"==p(a)}function v(a){var b=typeof a;return"object"==b&&null!=a||"function"==b}var w="closure_uid_"+(1E9*Math.random()>>>0),aa=0;\n',
-        'function x(a){var b=p(a);if("object"==b||"array"==b){if(a.clone)return a.clone();var b="array"==b?[]:{},c;for(c in a)b[c]=x(a[c]);return b}return a}function ba(a,b,c){return a.call.apply(a.bind,arguments)}function ca(a,b,c){if(!a)throw Error();if(2<arguments.length){var d=Array.prototype.slice.call(arguments,2);return function(){var c=Array.prototype.slice.call(arguments);Array.prototype.unshift.apply(c,d);return a.apply(b,c)}}return function(){return a.apply(b,arguments)}}\n',
-        'function y(a,b,c){y=Function.prototype.bind&&-1!=Function.prototype.bind.toString().indexOf("native code")?ba:ca;return y.apply(null,arguments)}function z(a,b){var c=Array.prototype.slice.call(arguments,1);return function(){var b=c.slice();b.push.apply(b,arguments);return a.apply(this,b)}}var da=Date.now||function(){return+new Date},A=null;\n',
-        'function B(a,b){var c=a.split("."),d=l;c[0]in d||!d.execScript||d.execScript("var "+c[0]);for(var e;c.length&&(e=c.shift());)!c.length&&m(b)?d[e]=b:d=d[e]?d[e]:d[e]={}}function C(a,b){D.prototype[a]=b};var E=Array.prototype.indexOf?function(a,b,c){return Array.prototype.indexOf.call(a,b,c)}:function(a,b,c){c=null==c?0:0>c?Math.max(0,a.length+c):c;if(t(a))return t(b)&&1==b.length?a.indexOf(b,c):-1;for(;c<a.length;c++)if(c in a&&a[c]===b)return c;return-1},ea=Array.prototype.lastIndexOf?function(a,b,c){return Array.prototype.lastIndexOf.call(a,b,null==c?a.length-1:c)}:function(a,b,c){c=null==c?a.length-1:c;0>c&&(c=Math.max(0,a.length+c));if(t(a))return t(b)&&1==b.length?a.lastIndexOf(b,c):-1;for(;0<=\n',
-        'c;c--)if(c in a&&a[c]===b)return c;return-1},F=Array.prototype.forEach?function(a,b,c){Array.prototype.forEach.call(a,b,c)}:function(a,b,c){for(var d=a.length,e=t(a)?a.split(""):a,g=0;g<d;g++)g in e&&b.call(c,e[g],g,a)};function G(a,b,c){for(var d=t(a)?a.split(""):a,e=a.length-1;0<=e;--e)e in d&&b.call(c,d[e],e,a)}\n',
-        'var fa=Array.prototype.filter?function(a,b,c){return Array.prototype.filter.call(a,b,c)}:function(a,b,c){for(var d=a.length,e=[],g=0,h=t(a)?a.split(""):a,k=0;k<d;k++)if(k in h){var n=h[k];b.call(c,n,k,a)&&(e[g++]=n)}return e},ga=Array.prototype.map?function(a,b,c){return Array.prototype.map.call(a,b,c)}:function(a,b,c){for(var d=a.length,e=Array(d),g=t(a)?a.split(""):a,h=0;h<d;h++)h in g&&(e[h]=b.call(c,g[h],h,a));return e},ha=Array.prototype.reduce?function(a,b,c,d){d&&(b=y(b,d));return Array.prototype.reduce.call(a,\n',
-        'b,c)}:function(a,b,c,d){var e=c;F(a,function(c,h){e=b.call(d,e,c,h,a)});return e},ia=Array.prototype.reduceRight?function(a,b,c,d){d&&(b=y(b,d));return Array.prototype.reduceRight.call(a,b,c)}:function(a,b,c,d){var e=c;G(a,function(c,h){e=b.call(d,e,c,h,a)});return e},ja=Array.prototype.some?function(a,b,c){return Array.prototype.some.call(a,b,c)}:function(a,b,c){for(var d=a.length,e=t(a)?a.split(""):a,g=0;g<d;g++)if(g in e&&b.call(c,e[g],g,a))return!0;return!1},ka=Array.prototype.every?function(a,\n',
-        'b,c){return Array.prototype.every.call(a,b,c)}:function(a,b,c){for(var d=a.length,e=t(a)?a.split(""):a,g=0;g<d;g++)if(g in e&&!b.call(c,e[g],g,a))return!1;return!0};function H(a,b,c){for(var d=a.length,e=t(a)?a.split(""):a,g=0;g<d;g++)if(g in e&&b.call(c,e[g],g,a))return g;return-1}function I(a,b,c){for(var d=t(a)?a.split(""):a,e=a.length-1;0<=e;e--)if(e in d&&b.call(c,d[e],e,a))return e;return-1}function J(a,b){return 0<=E(a,b)}function L(a,b,c){M(a,c,0,b)}\n',
-        'function N(a,b){return 1==Array.prototype.splice.call(a,b,1).length}function O(a){var b=a.length;if(0<b){for(var c=Array(b),d=0;d<b;d++)c[d]=a[d];return c}return[]}function M(a,b,c,d){return Array.prototype.splice.apply(a,P(arguments,1))}function P(a,b,c){return 2>=arguments.length?Array.prototype.slice.call(a,b):Array.prototype.slice.call(a,b,c)}function Q(a,b,c){return R(a,c||S,!1,b)}\n',
-        'function R(a,b,c,d,e){for(var g=0,h=a.length,k;g<h;){var n=g+h>>1,K;K=c?b.call(e,a[n],n,a):b(d,a[n]);0<K?g=n+1:(h=n,k=!K)}return k?g:~g}function T(a,b){a.sort(b||S)}function la(a,b,c){var d=c||S;T(a,function(a,c){return d(b(a),b(c))})}function S(a,b){return a>b?1:a<b?-1:0}function U(a,b){return a===b}\n',
-        'function V(a){for(var b=[],c=0;c<arguments.length;c++){var d=arguments[c];if(q(d))for(var e=0;e<d.length;e+=8192)for(var g=V.apply(null,P(d,e,e+8192)),h=0;h<g.length;h++)b.push(g[h]);else b.push(d)}return b};function W(a,b,c){for(var d in a)b.call(c,a[d],d,a)}function ma(a,b){for(var c in a)if(a[c]==b)return!0;return!1}function X(a,b,c){for(var d in a)if(b.call(c,a[d],d,a))return d}function Y(a,b){var c;(c=b in a)&&delete a[b];return c}function na(a){var b=p(a);if("object"==b||"array"==b){if(u(a.clone))return a.clone();var b="array"==b?[]:{},c;for(c in a)b[c]=na(a[c]);return b}return a}var oa="constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf".split(" ");\n',
-        'function pa(a,b){for(var c,d,e=1;e<arguments.length;e++){d=arguments[e];for(c in d)a[c]=d[c];for(var g=0;g<oa.length;g++)c=oa[g],Object.prototype.hasOwnProperty.call(d,c)&&(a[c]=d[c])}}function qa(a){var b=arguments.length;if(1==b&&q(arguments[0]))return qa.apply(null,arguments[0]);if(b%2)throw Error("Uneven number of arguments");for(var c={},d=0;d<b;d+=2)c[arguments[d]]=arguments[d+1];return c}\n',
-        'function ra(a){var b=arguments.length;if(1==b&&q(arguments[0]))return ra.apply(null,arguments[0]);for(var c={},d=0;d<b;d++)c[arguments[d]]=!0;return c};function D(a,b,c,d,e,g,h,k){this.P=b;this.a=a;this.j=c;this.h=d;this.m=null;this.f=this.s=this.o=!1;this.v=[];this.c={};this.u=[c];null!=k&&r(k)&&(this.u=k);this.g=g;this.i=new WebSocket(this.P);this.b=h(this,c);this.i.onopen=y(this.L,this);this.i.onmessage=y(this.K,this);this.i.onerror=y(this.J,this)}f=D.prototype;f.M=function(a,b,c){c=c||"algo_"+parseInt(1E7*Math.random(),10);postMessage({rep:"new_order_limited",instance:this.a,qty:a,side:"1",price:b,client_order_id:c});return c};\n',
-        'f.N=function(a,b,c){c=c||"algo_"+parseInt(1E7*Math.random(),10);postMessage({rep:"new_order_limited",instance:this.a,qty:a,side:"2",price:b,client_order_id:c});return c};f.A=function(a,b){if(null!=a||null!=b)if(null!=a&&null!=b)this.stop("Invalid paramaters. You must passa either opt_clientOrderId or opt_orderId");else{if(null!=a)Y(this.h,a);else if(null!=b){var c=X(this.h,function(a){return a.OrderID==b});null!=c&&Y(this.h,c)}postMessage({rep:"cancel_order",instance:this.a,client_order_id:a,order_id:b})}else this.stop("Invalid paramaters. Missing opt_clientOrderId or opt_orderId")};\n',
-        'f.w=function(){postMessage({rep:"cancel_order",instance:this.a})};f.G=function(){return this.c[this.j]};f.B=function(a,b){return"deposit"==b?this.g[a]:"available"==b?null!=this.g[a+"_locked"]?this.g[a]-this.g[a+"_locked"]:null!=this.g[a]?this.g[a]:0:null!=b?this.g[a+"_"+b]:this.g[a]};f.I=function(){return this.v};f.H=function(){return this.m};f.F=function(){return this.h};f.D=function(){return this.j};f.C=function(){return this.a};\n',
-        'f.showNotification=function(a,b,c){postMessage({rep:"notification",instance:this.a,type:c|NaN,title:a,description:b})};f.stop=function(a){try{this.f&&(this.b.stop(),this.f=!1)}catch(b){}null==a?postMessage({rep:"stop",instance:this.a}):postMessage({rep:"stop",instance:this.a,error:a})};\n',
-        'f.L=function(){postMessage({rep:"create",instance:this.a,status:"ws_open"});this.i.send(JSON.stringify({MsgType:"V",MDReqID:parseInt(1E7*Math.random(),10),SubscriptionRequestType:"1",MarketDepth:0,MDUpdateType:"1",MDEntryTypes:["0","1","2"],Instruments:[this.j]}));this.i.send(JSON.stringify({MsgType:"e",SecurityStatusReqID:parseInt(1E7*Math.random(),10),SubscriptionRequestType:"1",Instruments:this.u}));setTimeout(y(this.O,this),3E4)};\n',
-        'f.O=function(){this.i.send(JSON.stringify({MsgType:"1",TestReqID:parseInt(1E7*Math.random(),10),SendTime:(new Date).getTime()}))};function sa(a){var b=Z;if(!b.f){try{b.m=a,b.b.start(a),b.f=!0}catch(c){}postMessage({rep:"start",instance:b.a})}}function ta(a,b){try{a.f&&(a.b.stop(),a.f=!1)}catch(c){}null==b?postMessage({rep:"terminate",instance:a.a}):postMessage({rep:"terminate",instance:a.a,error:b})}\n',
-        'function ua(a){var b=Z;pa(b.g,a);try{W(a,function(a,b){if("locked"==b.substring(4))this.b.onBalanceUpdate(b.substring(0,3),a,AlgorithmTradingInterface.BalanceType.LOCKED);else this.b.onBalanceUpdate(b,a,AlgorithmTradingInterface.BalanceType.DEPOSIT)},b)}catch(c){}postMessage({rep:"balance",instance:b.a})}function va(a){var b=Z;b.m=a;try{b.b.onUpdateParams(a)}catch(c){}postMessage({rep:"params",instance:b.a})}\n',
-        'function wa(a){var b=Z;"2"==a.OrdStatus||"4"==a.OrdStatus?Y(b.h,a.ClOrdID):("A"!=a.OrdStatus&&"0"==a.OrdStatus&&Y(b.h,a.ClOrdID),b.h[a.ClOrdID]=a);try{b.b.onExecutionReport(a)}catch(c){}postMessage({rep:"execution_report",instance:b.a})}f.J=function(a){ta(this,a.data)};\n',
-        'function xa(a,b){var c=b.Symbol,d=b.MDEntryType,e=b.MDEntryPositionNo-1,g=b.MDEntryPx,h=b.MDEntrySize;null==a.c[c]&&(a.c[c]={bids:[],asks:[]});"0"==d?L(a.c[c].bids,[g,h],e):"1"==d&&L(a.c[c].asks,[g,h],e);if(a.f)try{a.b.onOrderBookNewOrder(b)}catch(k){}}\n',
-        'function ya(a,b){var c=new Date,d=b.MDEntryDate.split("-"),e=b.MDEntryTime.split(":");c.setUTCFullYear(d[0]);c.setUTCMonth(d[1]);c.setUTCDate(d[2]);c.setUTCHours(e[0]);c.setUTCMinutes(e[1]);c.setUTCSeconds(e[2]);b.Timestamp=c;a.v.push(b);if(a.f)try{a.b.onTrade(b)}catch(g){}}\n',
-        'f.K=function(a){a=JSON.parse(a.data);var b=a.MsgType;delete a.MsgType;switch(b){case "f":if(this.f)try{this.b.onTicker(a)}catch(n){}this.s||postMessage({rep:"create",instance:this.a,status:"received_security_status"});this.s=!0;break;case "W":for(var c in a.MDFullGrp){var d=a.MDFullGrp[c];d.MDReqID=a.MDReqID;switch(d.MDEntryType){case "0":case "1":d.Symbol=a.Symbol;xa(this,d);break;case "2":ya(this,d)}}this.o||postMessage({rep:"create",instance:this.a,status:"received_full_refresh"});this.o=!0;break;\n',
-        'case "X":c=!1;for(d in a.MDIncGrp)switch(b=a.MDIncGrp[d],b.MDReqID=a.MDReqID,b.MDEntryType){case "0":case "1":c=!0;switch(b.MDUpdateAction){case "0":xa(this,b);break;case "1":var e=b.Symbol,g=b.MDEntryType,h=b.MDEntryPositionNo-1,k=b.MDEntrySize;"0"==g?this.c[e].bids[h]=[this.c[e].bids[h][0],k]:"1"==g&&(this.c[e].asks[h]=[this.c[e].asks[h][0],k]);if(this.f)try{this.b.onOrderBookUpdateOrder(b)}catch(n){}break;case "2":e=b.Symbol;g=b.MDEntryPositionNo-1;h=b.MDEntryType;"0"==h?this.c[e].bids.splice(g,\n',
-        '1):"1"==h&&this.c[e].asks.splice(g,1);if(this.f)try{this.b.onOrderBookDeleteOrder(b)}catch(n){}break;case "3":if(e=b.Symbol,g=b.MDEntryPositionNo,h=b.MDEntryType,"0"==h?this.c[e].bids.splice(0,g):"1"==h&&this.c[e].asks.splice(0,g),this.f)try{this.b.onOrderBookDeleteOrdersThru(b)}catch(n){}}break;case "2":ya(this,b)}try{if(this.f&&c)this.b.onOrderBookChange(this.c[this.j])}catch(n){}}};var Z;\n',
-        'addEventListener("message",function(a){try{var b=a.data;switch(b.req){case "create":var c=eval(context.algo_definition.creator);Z=new D(context.algo_instance_id,context.wss_url,context.symbol,context.open_orders,0,context.balance,c,context.tickers);break;case "start":sa(b.params);break;case "params":va(b.params);break;case "execution_report":wa(b.execution_report);break;case "stop":Z.stop();self.close();break;case "balance":ua(b.balances)}}catch(d){null!=Z&&ta(Z,d.message),self.close()}},!1);\n',
-        'B("goog.bind",y);B("goog.isDefAndNotNull",function(a){return null!=a});B("goog.typeOf",p);B("goog.isDef",m);B("goog.isNull",function(a){return null===a});B("goog.isArray",q);B("goog.isArrayLike",r);B("goog.isDateLike",function(a){return v(a)&&"function"==typeof a.getFullYear});B("goog.isString",t);B("goog.isBoolean",function(a){return"boolean"==typeof a});B("goog.isNumber",function(a){return"number"==typeof a});B("goog.isFunction",u);B("goog.isObject",v);B("goog.cloneObject",x);B("goog.partial",z);\n',
-        'B("goog.mixin",function(a,b){for(var c in b)a[c]=b[c]});B("goog.now",da);\n',
-        'B("goog.globalEval",function(a){if(l.execScript)l.execScript(a,"JavaScript");else if(l.eval){if(null==A)if(l.eval("var _evalTest_ = 1;"),"undefined"!=typeof l._evalTest_){try{delete l._evalTest_}catch(d){}A=!0}else A=!1;if(A)l.eval(a);else{var b=l.document,c=b.createElement("SCRIPT");c.type="text/javascript";c.defer=!1;c.appendChild(b.createTextNode(a));b.body.appendChild(c);b.body.removeChild(c)}}else throw Error("goog.globalEval not available");});\n',
-        'B("goog.inherits",function(a,b){function c(){}c.prototype=b.prototype;a.l=b.prototype;a.prototype=new c;a.prototype.constructor=a;a.R=function(a,c,g){for(var h=Array(arguments.length-2),k=2;k<arguments.length;k++)h[k-2]=arguments[k];return b.prototype[c].apply(a,h)}});\n',
-        'B("goog.base",function(a,b,c){var d=arguments.callee.caller;if(!d)throw Error("arguments.caller not defined.  goog.base() cannot be used with strict mode code. See http://www.ecma-international.org/ecma-262/5.1/#sec-C");if(d.l){for(var e=Array(arguments.length-1),g=1;g<arguments.length;g++)e[g-1]=arguments[g];return d.l.constructor.apply(a,e)}e=Array(arguments.length-2);for(g=2;g<arguments.length;g++)e[g-2]=arguments[g];for(var g=!1,h=a.constructor;h;h=h.l&&h.l.constructor)if(h.prototype[b]===d)g=\n',
-        '!0;else if(g)return h.prototype[b].apply(a,e);if(a[b]===d)return a.constructor.prototype[b].apply(a,e);throw Error("goog.base called from a method of one name to a method of a different name");});B("goog.array.splice",M);B("goog.array.insertAt",L);B("goog.array.indexOf",E);B("goog.array.lastIndexOf",ea);B("goog.array.forEach",F);B("goog.array.forEachRight",G);B("goog.array.filter",fa);B("goog.array.map",ga);B("goog.array.reduce",ha);B("goog.array.reduceRight",ia);B("goog.array.some",ja);\n',
-        'B("goog.array.every",ka);B("goog.array.count",function(a,b,c){var d=0;F(a,function(a,g,h){b.call(c,a,g,h)&&++d},c);return d});B("goog.array.findIndex",H);B("goog.array.findRight",function(a,b,c){b=I(a,b,c);return 0>b?null:t(a)?a.charAt(b):a[b]});B("goog.array.findIndexRight",I);B("goog.array.contains",J);B("goog.array.isEmpty",function(a){return 0==a.length});B("goog.array.clear",function(a){if(!q(a))for(var b=a.length-1;0<=b;b--)delete a[b];a.length=0});\n',
-        'B("goog.array.insert",function(a,b){J(a,b)||a.push(b)});B("goog.array.insertArrayAt",function(a,b,c){z(M,a,c,0).apply(null,b)});B("goog.array.insertBefore",function(a,b,c){var d;2==arguments.length||0>(d=E(a,c))?a.push(b):L(a,b,d)});B("goog.array.remove",function(a,b){var c=E(a,b),d;(d=0<=c)&&N(a,c);return d});B("goog.array.removeAt",N);B("goog.array.removeIf",function(a,b,c){b=H(a,b,c);return 0<=b?(N(a,b),!0):!1});\n',
-        'B("goog.array.concat",function(a){return Array.prototype.concat.apply(Array.prototype,arguments)});B("goog.array.toArray",O);B("goog.array.clone",O);B("goog.array.extend",function(a,b){for(var c=1;c<arguments.length;c++){var d=arguments[c];if(r(d)){var e=a.length||0,g=d.length||0;a.length=e+g;for(var h=0;h<g;h++)a[e+h]=d[h]}else a.push(d)}});B("goog.array.slice",P);\n',
-        'B("goog.array.removeDuplicates",function(a,b,c){function d(a){return v(a)?"o"+(a[w]||(a[w]=++aa)):(typeof a).charAt(0)+a}b=b||a;c=c||d;for(var e={},g=0,h=0;h<a.length;){var k=a[h++],n=c(k);Object.prototype.hasOwnProperty.call(e,n)||(e[n]=!0,b[g++]=k)}b.length=g});B("goog.array.binarySearch",Q);B("goog.array.binarySelect",function(a,b,c){return R(a,b,!0,void 0,c)});B("goog.array.sort",T);\n',
-        'B("goog.array.stableSort",function(a,b){for(var c=0;c<a.length;c++)a[c]={index:c,value:a[c]};var d=b||S;T(a,function(a,b){return d(a.value,b.value)||a.index-b.index});for(c=0;c<a.length;c++)a[c]=a[c].value});B("goog.array.sortObjectsByKey",function(a,b,c){la(a,function(a){return a[b]},c)});B("goog.array.isSorted",function(a,b,c){b=b||S;for(var d=1;d<a.length;d++){var e=b(a[d-1],a[d]);if(0<e||0==e&&c)return!1}return!0});\n',
-        'B("goog.array.equals",function(a,b,c){if(!r(a)||!r(b)||a.length!=b.length)return!1;var d=a.length;c=c||U;for(var e=0;e<d;e++)if(!c(a[e],b[e]))return!1;return!0});B("goog.array.compare3",function(a,b,c){c=c||S;for(var d=Math.min(a.length,b.length),e=0;e<d;e++){var g=c(a[e],b[e]);if(0!=g)return g}return S(a.length,b.length)});B("goog.array.defaultCompare",S);B("goog.array.defaultCompareEquality",U);B("goog.array.binaryInsert",function(a,b,c){c=Q(a,b,c);return 0>c?(L(a,b,-(c+1)),!0):!1});\n',
-        'B("goog.array.binaryRemove",function(a,b,c){b=Q(a,b,c);return 0<=b?N(a,b):!1});B("goog.array.bucket",function(a,b,c){for(var d={},e=0;e<a.length;e++){var g=a[e],h=b.call(c,g,e,a);m(h)&&(d[h]||(d[h]=[])).push(g)}return d});B("goog.array.toObject",function(a,b,c){var d={};F(a,function(e,g){d[b.call(c,e,g,a)]=e});return d});B("goog.array.range",function(a,b,c){var d=[],e=0,g=a;c=c||1;void 0!==b&&(e=a,g=b);if(0>c*(g-e))return[];if(0<c)for(a=e;a<g;a+=c)d.push(a);else for(a=e;a>g;a+=c)d.push(a);return d});\n',
-        'B("goog.array.repeat",function(a,b){for(var c=[],d=0;d<b;d++)c[d]=a;return c});B("goog.array.flatten",V);B("goog.array.rotate",function(a,b){a.length&&(b%=a.length,0<b?Array.prototype.unshift.apply(a,a.splice(-b,b)):0>b&&Array.prototype.push.apply(a,a.splice(0,-b)));return a});\n',
-        'B("goog.array.zip",function(a){if(!arguments.length)return[];for(var b=[],c=arguments[0].length,d=1;d<arguments.length;d++)arguments[d].length<c&&(c=arguments[d].length);for(d=0;d<c;d++){for(var e=[],g=0;g<arguments.length;g++)e.push(arguments[g][d]);b.push(e)}return b});B("goog.array.shuffle",function(a,b){for(var c=b||Math.random,d=a.length-1;0<d;d--){var e=Math.floor(c()*(d+1)),g=a[d];a[d]=a[e];a[e]=g}});B("goog.object.forEach",W);B("goog.object.extend",pa);\n',
-        'B("goog.object.filter",function(a,b,c){var d={},e;for(e in a)b.call(c,a[e],e,a)&&(d[e]=a[e]);return d});B("goog.object.map",function(a,b,c){var d={},e;for(e in a)d[e]=b.call(c,a[e],e,a);return d});B("goog.object.some",function(a,b,c){for(var d in a)if(b.call(c,a[d],d,a))return!0;return!1});B("goog.object.every",function(a,b,c){for(var d in a)if(!b.call(c,a[d],d,a))return!1;return!0});B("goog.object.getCount",function(a){var b=0,c;for(c in a)b++;return b});B("goog.object.getAnyKey",function(a){for(var b in a)return b});\n',
-        'B("goog.object.getAnyValue",function(a){for(var b in a)return a[b]});B("goog.object.contains",function(a,b){return ma(a,b)});B("goog.object.getValues",function(a){var b=[],c=0,d;for(d in a)b[c++]=a[d];return b});B("goog.object.getKeys",function(a){var b=[],c=0,d;for(d in a)b[c++]=d;return b});B("goog.object.getValueByKeys",function(a,b){for(var c=r(b),d=c?b:arguments,c=c?0:1;c<d.length&&(a=a[d[c]],m(a));c++);return a});B("goog.object.containsKey",function(a,b){return null!==a&&b in a});\n',
-        'B("goog.object.containsValue",ma);B("goog.object.findKey",X);B("goog.object.findValue",function(a,b,c){return(b=X(a,b,c))&&a[b]});B("goog.object.isEmpty",function(a){for(var b in a)return!1;return!0});B("goog.object.clear",function(a){for(var b in a)delete a[b]});B("goog.object.remove",Y);B("goog.object.add",function(a,b,c){if(null!==a&&b in a)throw Error("The object already contains the key "+b);a[b]=c});B("goog.object.get",function(a,b,c){return null!==a&&b in a?a[b]:c});\n',
-        'B("goog.object.set",function(a,b,c){a[b]=c});B("goog.object.setIfUndefined",function(a,b,c){return b in a?a[b]:a[b]=c});B("goog.object.clone",function(a){var b={},c;for(c in a)b[c]=a[c];return b});B("goog.object.unsafeClone",na);B("goog.object.transpose",function(a){var b={},c;for(c in a)b[a[c]]=c;return b});B("goog.object.create",qa);B("goog.object.createSet",ra);B("goog.object.createImmutableView",function(a){var b=a;Object.isFrozen&&!Object.isFrozen(a)&&(b=Object.create(a),Object.freeze(b));return b});\n',
-        'B("goog.object.isImmutableView",function(a){return!!Object.isFrozen&&Object.isFrozen(a)});B("Application",D);C("sendBuyLimitedOrder",D.prototype.M);C("sendSellLimitedOrder",D.prototype.N);C("cancelAllOrders",D.prototype.w);C("cancelOrder",D.prototype.A);C("getOrderBook",D.prototype.G);C("getTrades",D.prototype.I);C("getBalance",D.prototype.B);C("getParameters",D.prototype.H);C("getOpenOrders",D.prototype.F);C("getMarket",D.prototype.D);C("getInstanceID",D.prototype.C);C("showNotification",D.prototype.showNotification);\n',
-        'C("stop",D.prototype.stop);\n'
-      ];
-
-      var blob = new Blob(algo_sandbox);
-      var blobURL = window.URL.createObjectURL(blob);
-
-      var running_algorithms = this.getModel().get('RunningAlgorithms');
-      if (!goog.isDefAndNotNull(running_algorithms)) {
-        running_algorithms = {};
-      }
-
-      var worker = new Worker(blobURL);
-      running_algorithms[algo_instance_id] = {'blobURL': blobURL, 'worker': worker};
-      this.getModel().set('RunningAlgorithms', running_algorithms);
-
-
-      /**
-       * @desc error algorithm notification message
-       */
-      var MSG_ERROR_RUNNING_ALGORITHM_NOTIFICATION = goog.getMsg('Error running algorithm');
-
-      handler.listen(worker, 'message', function(e) {
-        e = e.getBrowserEvent();
-        if (   e.data['rep'] != 'create'
-            && e.data['rep'] != 'start'
-            && e.data['rep'] != 'params'
-            && e.data['rep'] != 'error'
-            && e.data['rep'] != 'terminate'
-            && e.data['rep'] != 'stop') {
-          if ( goog.array.indexOf(algo_permissions, e.data['rep'])  < 0 ) {
-            if (this.getModel().get( e.data['instance'] + '_status') == '2') {
-              this.getModel().set( e.data['instance'] + '_status', '3' );
-            }
-
-            /**
-             * @desc notification shown when the algorithm executed a illegal operation
-             */
-            var MSG_ILLEGAL_OPERATION_ALGORITHM_NOTIFICATION = goog.getMsg('Algorithm tried to execute a ilegal operation');
-
-            this.showNotification('error', MSG_ILLEGAL_OPERATION_ALGORITHM_NOTIFICATION, e.data['rep']);
-
-            this.getModel().set( e.data['instance'] + '_status', '0' );
-            running_algorithms = this.getModel().get('RunningAlgorithms');
-            goog.object.remove(running_algorithms, e.data['instance']);
-            this.getModel().set('RunningAlgorithms', running_algorithms);
-            return;
-          }
-        }
-
-        switch(e.data['rep']) {
-          case 'create':
-            this.getModel().set( e.data['instance'] + '_status', '1' );
-            if (e.data['status'] == 'received_security_status') {
-              this.getModel().set( e.data['instance'] + '_status_received_security_status', '1' );
-            }
-            if (e.data['status'] == 'received_full_refresh') {
-              this.getModel().set( e.data['instance'] + '_status_received_full_refresh', '1' );
-            }
-            if (e.data['status'] == 'ws_open') {
-              this.getModel().set( e.data['instance'] + '_status_ws_open', '1' );
-            }
-            if (    this.getModel().get( e.data['instance'] + '_status_ws_open' )
-                && this.getModel().get( e.data['instance'] + '_status_received_full_refresh' )
-                && this.getModel().get( e.data['instance'] + '_status_received_security_status' )  ) {
-              worker.postMessage({'req':'start', 'params': this.getModel().get( algo_instance_id + '_params') });
-            }
-            break;
-          case 'start':
-            this.getModel().set( e.data['instance'] + '_status', '2' );
-            break;
-          case 'notification':
-            this.showNotification(e.data['type'], e.data['title'], e.data['description']);
-            break;
-          case 'error':
-          case 'terminate':
-          case 'stop':
-            if (this.getModel().get( e.data['instance'] + '_status') == '2') {
-              this.getModel().set( e.data['instance'] + '_status', '3' );
-            }
-            if (goog.isDefAndNotNull(e.data['error'])) {
-              this.showNotification('error', MSG_ERROR_RUNNING_ALGORITHM_NOTIFICATION,  e.data['error']);
-            }
-            this.getModel().set( e.data['instance'] + '_status', '0' );
-            running_algorithms = this.getModel().get('RunningAlgorithms');
-            goog.object.remove(running_algorithms, e.data['instance']);
-            this.getModel().set('RunningAlgorithms', running_algorithms);
-            break;
-          case 'new_order_limited':
-            var order_symbol  = this.getModel().get( e.data['instance'] + '_symbol').symbol;
-            this.getBitexConnection().sendLimitedOrder( order_symbol,
-                                                        parseInt(e.data['qty'],10),
-                                                        parseInt(e.data['price'],10),
-                                                        e.data['side'],
-                                                        this.getModel().get('SelectedBrokerID'),
-                                                        undefined,
-                                                        e.data['client_order_id']);
-            break;
-          case 'cancel_order':
-            this.conn_.cancelOrder(e.data['client_order_id'], e.data['order_id']);
-            break;
-          default:
-            break;
-        }
-      }, this);
-      worker.postMessage({'req':'create', 'params': params });
+    if (content == null) {
+        content = '';
     }
-  }, this);
+
+    Notify.setOptions({type: type}).send(title + ' ' + content);
 };
-
-
-/**
- * @param {bitex.model.ModelEvent} e
- * @private
- */
-bitex.app.Bitex.prototype.onAlgoStatusChange_ = function(e){
-  var model = this.getModel();
-  var algo_instance_id = e.key.substr(0, e.key.length - '_status'.length  );
-  var new_status = e.data;
-  if (new_status == '3'){ // '3' - pending stop
-
-    /**
-     * @desc starting algorithm notification message
-     */
-    var MSG_STOPPING_ALGORITHM_NOTIFICATION = goog.getMsg('stopping algorithm ....');
-    this.showNotification('info', MSG_STOPPING_ALGORITHM_NOTIFICATION);
-
-
-    var running_algorithms = this.getModel().get('RunningAlgorithms');
-    var worker = running_algorithms[algo_instance_id]['worker'];
-    worker.postMessage( { 'req': 'stop' } );
-  }
-
-};
-
-/**
- * @param {bitex.model.ModelEvent} e
- * @private
- */
-bitex.app.Bitex.prototype.onAlgoParams_ = function(e){
-  var algo_instance_id = e.key.substr(0, e.key.length - '_params'.length  );
-  var parameters = e.data;
-
-  var running_algorithms = this.getModel().get('RunningAlgorithms');
-  var worker = running_algorithms[algo_instance_id]['worker'];
-
-  worker.postMessage( { 'req': 'params', 'params': parameters } );
-};
-
 
 /**
  * @param {Object} token
@@ -5298,9 +5115,9 @@ bitex.app.Bitex.prototype.sendAccessToken = function(token) {
 /**
  * @param {string} url
  */
-bitex.app.blink_trade = function( url ) {
+bitex.app.bitex_trade = function( url ) {
   var app = new bitex.app.Bitex();
-  app.run(url );
+  app.run(url);
 };
 
 

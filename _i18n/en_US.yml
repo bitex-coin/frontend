@@ -106,6 +106,7 @@ views:
     high: HIGH
     last: LAST
     low: LOW
+    variation: VARIATION
     volume: VOLUME
 
   start:
@@ -162,6 +163,7 @@ views:
 
   profile:
     title: My Profile
+    configurations: Personal Settings
     two_factor_auth_section:
       title: Two factor authentication (2FA)
       key: Key
@@ -244,6 +246,7 @@ views:
   sidebar:
     admin: Admin
     market: "Market:"
+    home: Welcome
     navigation: Navigation
     menu: Menu
     my_profile: My Profile

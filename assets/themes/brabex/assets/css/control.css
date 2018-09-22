@@ -1,0 +1,835 @@
+.bitex-logged .bitex-hide-if-logged {
+  display: none;
+}
+
+.bitex-not-logged .bitex-show-if-logged {
+     display: none;
+}
+
+.bitex-logged .bitex-show-if-logged {
+  display: contents;
+}
+
+.bitex-not-logged #wrapper .main {
+    width: 100%;
+}
+
+.bitex-not-logged #faq .main-content {
+    padding: 108px 10px;
+}
+
+.bitex-logged #faq .main-content {
+    padding: 5px 0px;
+}
+
+.bitex-logged #faq .main {
+    width: 100%;
+}
+
+.bitex-logged #faq .main-night {
+    width: 100%;
+}
+
+.bitex-logged .main-content {
+    padding: 92px 10px;
+}
+
+.bitex-not-logged #wrapper .sidebar {
+    display: none;
+}
+
+.broker-view {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.bitex-broker .bitex-display-if-broker {
+  display: contents;
+}
+
+.bitex-non-broker .bitex-display-if-broker {
+  display: none;
+}
+
+.signup-link {
+    text-decoration: underline;
+}
+
+#id_btn_enable_two_factor_view, .api-btn-create {
+    margin-right: 4px;
+}
+
+.api-ip {
+    width: 196px;
+}
+
+.modal-header .close {
+    margin-top: -21px;
+}
+
+#id_deposit_button_group, #id_withdraw_button_group {
+    margin-bottom: 6px;
+    margin-left: -14px;
+}
+
+#api-td {
+    background-color: #f9f9f9;
+}
+
+.requests-label {
+    margin-right: 4px;
+}
+
+.bitex-show-if-logged > .alert {
+    padding: 6px;
+    margin-bottom: 4px;
+}
+
+.datagrid-filter > button {
+    width: 180px;
+}
+
+.password-btn {
+    margin-top: 6px;
+}
+
+.bitex-not-logged #forgot_password .main-content,
+.bitex-not-logged #set_new_password .main-content {
+    padding: 108px 10px;
+}
+
+.main .close {
+    line-height: 0.9;
+}
+
+.modal.fade.in {
+    background: rgba(0, 0, 0, 0.5) none;
+}
+
+.sidebar-scroll::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 7px;
+	background-color: #4c5157;
+}
+
+.sidebar-scroll::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #4c5157;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #2d333b;
+}
+
+.panel2-night .table-striped>tbody>tr:nth-of-type(odd) {
+	background-color: #636767
+}
+
+.panel-night .table-striped>tbody>tr:nth-of-type(odd) {
+	background-color: #636767
+}
+
+.main-night .easy-invest {
+    background-color: #4c5157;
+}
+
+.main-night .broker-body {
+    background-color: #4c5157;
+}
+
+.main-night .broker-panel {
+    background-color: #2d333b;
+}
+
+.main-night .twofactor-panel {
+    background-color: #4c5157;
+}
+
+.main-night #id_select_new_email_language {
+    color: black;
+}
+
+.close-ticket {
+    margin-bottom: -17px;
+    margin-right: -12px;
+}
+
+.centralized {
+    text-align: center;
+}
+
+.table-hover-night>tbody>tr:nth-of-type(odd) {
+    background-color: #4c5050;
+}
+
+.account-summary-table {
+    text-align: center;
+    border-right-style: hidden;
+    border-left-style: hidden;
+}
+
+#account_balance {
+    background-color: #020202;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #313131;
+    color: #fff;
+}
+
+.account-ballance-wrapper{
+    /* margin-bottom: 10px; */
+}
+.account-balance-title{
+    padding: 6px 0;
+    margin-bottom: 3px;
+    background-color: #182e49;
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #3151ae;
+}
+.account-balance-content{
+    padding: 7px 27px;
+}
+.account-balance-currency{
+    float: left;
+    margin-right: 14px;
+}
+.account-balance-total{
+    background-color: #171616;
+    padding: 9px 26px;
+    margin-top: 3px;
+}
+
+#id_account_summary_content {
+    padding-top: 6px;
+    padding-right: 1px;
+}
+
+.wrapper-night #account_balance {
+    background-color: #283038;
+    color: #dcddde;
+}
+
+/* begin market resume*/
+.navbar-info-number {
+    display: flex;
+    flex: 1;
+    padding: 10px 2px 0 94px;
+    background-color: #fff;
+    max-width: 80px;
+}
+
+.navbar-market-info {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    white-space: nowrap;
+    list-style: none;
+}
+.navbar-market-info>li {
+    position: relative;
+    margin-right: 20px;
+    transition: transform 1s;
+}
+.navbar-market-info-nums {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    opacity: .8;
+}
+.navbar-market-info-desc {
+    display: block;
+    font-size: 11px;
+    font-weight: normal;
+    opacity: .5;
+}
+.down {
+    color: red;
+}
+.up {
+    color: #035684;
+}
+/* end market resume*/
+
+.navbar-right {
+    max-height: 72px;
+}
+
+/* begin ballot */
+.input-order-form {
+    margin-top: 10px;
+}
+.input-order-form .order-form-label {
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.input-order-form .order-form-value {
+    position: relative;
+}
+.input-order-form input[type=text] {
+    width: 100%;
+    height: 36px;
+    padding: 8px 5px 8px 10px;
+    /*border: 1px solid #565f66;*/
+    border-radius: 2px;
+    outline: 0;
+    box-shadow: none;
+    font-size: 14px;
+    text-align: left;
+    border-radius: 4px;
+}
+.input-order-form .order-form-value span {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    transform: translateY(-50%);
+}
+.input-order-form {
+    margin-top: 0;
+}
+.btn-ticket-buy {
+    margin-top: 4px;
+}
+.order-form-total-label {
+    margin-top: 11px;
+}
+.order-form-total-label>b {
+    font-size: 14px;
+}
+.advanced-order-entry-price-sign {
+    color: #676a6d;
+}
+.input-order {
+    color: #676a6d;
+}
+/* end ballot */
+
+.drop-right {
+    max-height: 72px;
+}
+.easy-sb-btn-block .icon {
+    position: absolute;
+    top: 50%;
+    right: 24px;
+    font-size: 11px;
+    font-weight: bold;
+    transform: translateY(-50%);
+}
+.btn-balance {
+    font-size: 11px;
+    margin-top: 19px;
+    width: 138px;
+}
+.main-night .fuelux .table-striped tbody > tr:nth-child(odd) > td {
+    background-color: #4c5050;
+}
+.main-night .fuelux .table-hover>tbody>tr:nth-of-type(odd) {
+    background-color: #4c5050;
+}
+.main-night .fuelux .table-hover tbody tr:hover > td {
+    background-color: #4c5050;
+}
+.md-blink,
+.order-manager-blink,
+.balance-info-blink,
+.order-book-blink {
+    background-color: #ffff00;
+}
+
+
+
+.intro-section{
+    text-align: center;
+}
+.intro-section p{
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    font-size: 18px;
+    font-weight: 100;
+}
+.intro-section a{
+    font-weight: 600;
+}
+.intro-section--img{
+    height: 200px;
+    margin-bottom: 20px;
+}
+.intro-section--img img{
+    height: 100%;
+}
+.panel .panel-body{
+    padding-bottom: 10px;
+}
+
+/* CAROUSEL */
+.carousel{
+    min-height: 375px;
+}
+.carousel-control.right,
+.carousel-control.left{
+    background: none;
+}
+.carousel-indicators li {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid #cecece;
+}
+.carousel-indicators .active {
+    width: 20px;
+    height: 14px;
+    background-color: #525252;
+    border-color: #525252;
+}
+.carousel-control .caroulsel-arrow-left, .carousel-control .icon-prev{
+    left: 10%;
+}
+.carousel-control .caroulsel-arrow-right, .carousel-control .icon-next{
+    right: 10%;
+}
+.carousel-control .caroulsel-arrow-left, .carousel-control .icon-prev,
+.carousel-control .caroulsel-arrow-right, .carousel-control .icon-next{
+    color: #0c0c0c;
+    text-shadow: none;
+}
+
+.carousel-control .caroulsel-arrow-left, 
+.carousel-control .caroulsel-arrow-right, 
+.carousel-control .icon-next, .carousel-control .icon-prev{
+    top: 25%;
+    position: absolute;
+    font-size: 25px;
+}
+
+/* NAVBAR */
+.nav>li.variations-mobile{
+    display: none;
+}
+.menu-icon{
+    float: left;
+}
+.navbar-btn{
+    padding: 20px 2px;
+}
+
+@media(max-width: 1024px){
+    .variations-desktop{
+        display: none;
+    }
+    .nav>li.variations-mobile{
+        display: block;
+    }
+}
+@media screen and (max-width: 425px) {
+    .navbar-default .brand {
+        float: left;
+        padding: 15px 19px 12px 10px;
+        background-color: #fff;
+        width: 208px;
+    }
+    .navbar-nav {
+        width: auto;
+    }
+    .navbar-nav > li > a .icon-submenu-flat {
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+    .navbar-nav > li > a {
+        padding: 15px 8px;
+    }
+    .navbar-btn {
+        padding: 19px 0px;
+    }
+}
+@media screen and (min-width: 426px) and (max-width: 767px) {
+    .navbar-default .brand {
+        float: left;
+        padding: 18px 0px 0px 9px;
+        background-color: #fff;
+        width: 136px;
+    }
+    .navbar-nav{
+        width: auto;
+    }
+    .navbar-nav > li > a .icon-submenu-flat {
+        margin-top: 0px; 
+        margin-left: 0px;
+    }
+    .navbar-nav > li > a {
+        padding: 15px 8px;
+    }
+}
+@media(max-width: 425px){
+    .menu-icons-group{
+        padding-top: 7px;
+        float: right;
+    }
+}
+/* @media(max-width: 320px){
+    .menu-icons-group{
+        float: none;
+        padding-top: 0;
+        clear: both;
+        margin: 0 auto;
+        width: 45%;
+    }
+} */
+
+/*NEW NEW*/
+.book-form {
+    margin-top: 2px;
+}
+.book-form .order-book-form {
+    position: relative;
+}
+.book-form input[type=text] {
+    width: 100%;
+    height: 36px;
+    padding: 8px 5px 8px 10px;
+    border: 1px solid #565f66;
+    border-radius: 2px;
+    outline: 0;
+    box-shadow: none;
+    *font-size: 14px;
+    /*font-weight: bold;*/
+    text-align: left;
+    color: #fff;
+    background-color: #404a52;
+}
+.book-form .order-book-form span {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    color: hsla(0,0%,100%,.9);
+    transform: translateY(-50%);
+}
+.book-submit-btn {
+    border-style: none;
+    width: 100%;
+    height: 44px;
+    margin: 0 auto;
+    padding: 13px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    cursor: pointer;
+    -webkit-transition: background-color 0.3s ease,color 0.5s ease;
+    transition: background-color 0.3s ease,color 0.5s ease;
+}
+.fuelux  .button_book {
+    padding: 0 8px;
+}
+.fuelux .table .order-manager-book-description,
+.fuelux .table .order-manager-book-avg-price,
+.fuelux .table .order-manager-book-actions {
+    width: 0px;
+    padding: 2px;
+    border-top: 1px solid #ddd;
+    line-height: 1.8;
+}
+.fuelux .table .trade-history-side-sell {
+    color: #d9534f;
+}
+.fuelux .table .trade-history-side-buy {
+    color: #3f8025;
+}
+.fuelux .table .trade-history-side-buy ~ .trade-history-price {
+    color: #3f8025;
+}
+.fuelux .table .trade-history-side-buy ~ .trade-history-size {
+    color: #3f8025;
+}
+.fuelux .table .trade-history-side-buy ~ .trade-history-volume {
+    color: #3f8025;
+}
+.fuelux .table .trade-history-side-buy ~ .trade-history-created {
+    color: #3f8025;
+}
+.fuelux .table .trade-history-side-sell ~ .trade-history-price {
+    color: #d9534f;
+}
+.fuelux .table .trade-history-side-sell ~ .trade-history-size {
+    color: #d9534f;
+}
+.fuelux .table .trade-history-side-sell ~ .trade-history-volume {
+    color: #d9534f;
+}
+.fuelux .table .trade-history-side-sell ~ .trade-history-created {
+    color: #d9534f;
+}
+.fuelux .table .trade-history-side-buy,
+.fuelux .table .trade-history-side-sell,
+.fuelux .table .trade-history-price,
+.fuelux .table .trade-history-size,
+.fuelux .table .trade-history-created,
+.fuelux .table .trade-history-volume {
+    text-align: center;
+    padding: 0px;
+    border-top: 1px solid #ddd;
+    line-height: 2;
+}
+.fuelux .table .label-center {
+    *text-align: center;
+}
+
+/* SIMULATOR WARNING */
+.simulator-warning {
+    background-color: #a42d31;
+    border-bottom: 2px solid #a42d31;
+    padding: 6px 28px;
+    margin-left: 1px;
+    margin-top: 72px;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+}
+.simulator-warning span{
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+}
+@media screen and (min-width: 425px) {
+    .book-panel {
+        margin-top: -30px;
+    }
+}
+@media(max-width: 425px){
+    .carousel{
+        min-height: auto;
+    }
+    .intro-section--img{
+        height: auto;   
+    }
+    .intro-section--img img{
+        height: auto;   
+        width: 70%;
+        max-width: 170px;
+    }
+    .intro-section p{
+        width: 100%;
+        font-size: 18px;
+    }
+    .carousel-control .glyphicon-chevron-left, 
+    .carousel-control .glyphicon-chevron-right, 
+    .carousel-control .icon-next, .carousel-control .icon-prev{
+        top: 19%;
+    }
+}
+#signup_broker_details {
+    padding-right: 0;
+    padding-left: 0;
+}
+.right-opt {
+    float: right;
+    margin-top: -16px;
+}
+.animated-menu {
+    bottom:15%;
+    position:relative;
+    -webkit-animation:linear infinite alternate;
+    -webkit-animation-name: run;
+    -webkit-animation-duration: 200s;
+}
+@-webkit-keyframes run {
+    0% { left: 12%;}
+    50%{ left : 85%;}
+    100%{ left: 0;}
+}
+.bitex-broker .broker-display-if-non-broker {
+    display: none;
+}
+.book-graph {
+    background-color: #182e49;
+    color: #fff;
+}
+.broker-not-logged .broker-display-if-logged {
+  display: none;
+}
+.bitex-logged .broker-display-if-logged {
+  display: block;
+}
+.broker-not-logged #id_toolbar {
+  height: 72px;
+}
+.profile-table {
+    margin-bottom: 49px;
+}
+.account-available-balance-title {
+    font-size: 12px;
+    margin-bottom: 0;
+    padding: 0;
+    border-bottom: 0;
+    background-color: #181819;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #d1d1d1;
+    margin-top: -3px;
+}
+.right-available-opt {
+    float: right;
+    margin-top: -17px;
+    margin-right: 12px;
+}
+.account-available-summary-broker:hover, .account-available-summary-broker:focus {
+    cursor: pointer;
+}
+.available {
+    margin-top: 3px;
+}
+.datagrid-sort {
+    margin-top: -15px;
+}
+.fee-margin {
+    margin-top: -16px;
+}
+.fee-brl-area {
+    background-color: lightgray;
+    border-bottom: 1px solid #908686;
+    border-top: 1px solid #908686;
+    margin-top: 4px;
+}
+.fee-brl-area > p {
+    text-align: center;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: -4px;
+}
+.ledger-activity-payee {
+    width: 253px;
+}
+.deposit-done-dialog {
+    color: red;
+    font-weight: 800;
+}
+.nav-name {
+    text-transform: capitalize;
+    font-weight: 600;
+    color: #333;
+}
+@media(max-width: 768px) {
+    .book-panel-header {
+        display: none;
+    }
+    .book-panel-header-title {
+        display: none;
+    }
+    #id_order_book_bid_content {
+        width: 100%;
+    }
+    #id_order_book_ask_content {
+        width: 100%;
+    }
+    #id_order_book_bid_content .order-book-username,
+    #id_order_book_bid_content .order-book-qty,
+    #id_order_book_bid_content .order-book-price {
+        background-color: #45803f;
+        color: #fff;
+        text-align: center;
+    }
+    #id_order_book_ask_content .order-book-username,
+    #id_order_book_ask_content .order-book-qty,
+    #id_order_book_ask_content .order-book-price {
+        background-color: #d9534f;
+        color: #fff;
+        text-align: center;
+    }
+    #id_order_book_ask_content .order-book-price .btn-cancel-order {
+        color: #000;
+    }
+}
+@media(min-width: 769px) {
+    .book-mobile-header {
+        display: none;
+    }
+}
+@media screen and (max-width: 352px) and (min-width: 320px) {
+    .order-entry-total {
+        max-width: 37%;
+    }
+    .btn-balance-advanced {
+        font-size: 11px;
+        margin-left: 1%;
+    }
+}
+@media screen and (max-width: 1024px) and (min-width: 353px) {
+    .order-entry-total {
+        max-width: 45%;
+    }
+    .btn-balance-advanced {
+        font-size: 11px;
+        margin-left: 2%;
+    }
+}
+@media screen and (max-width: 1440px) and (min-width: 1299px) {
+    .order-entry-total {
+        max-width: 48%;
+    }
+    .btn-balance-advanced {
+        font-size: 11px;
+        margin-left: 1%;
+    }
+}
+@media screen and (max-width: 1298px) and (min-width: 1284px) {
+    .order-entry-total {
+        max-width: 47%;
+    }
+    .btn-balance-advanced {
+        font-size: 11px;
+        margin-left: 1%;
+    }
+}
+@media screen and (max-width: 1283px) and (min-width: 1025px) {
+    .order-entry-total {
+        max-width: 45%;
+    }
+    .btn-balance-advanced {
+        font-size: 11px;
+        margin-left: 1%;
+    }
+}
+@media screen and (min-width: 1441px) {
+    .order-entry-total {
+        max-width: 68%;
+    }
+    .btn-balance-advanced {
+        font-size: 11px;
+        margin-left: 2%;
+    }
+}
+.text-justify {
+    text-align: justify;
+}
+.order-variation {
+    color: red;
+    font-weight: 800;
+}
+.easy-btn-qty {
+    font-weight: 300;
+}
+@media screen and (max-width: 425px) {
+    .deposit-withdraw-button-group > button {
+        margin-bottom: 2px;
+    }
+    #id_btn_enable_two_factor {
+        font-size: 12px;
+    }
+}
+
+

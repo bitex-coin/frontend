@@ -1,0 +1,88 @@
+{namespace bitex.view.SideBarView.templates}
+
+/**
+  * @param pattern
+  * @param desc
+  * @param variables
+  * @param formula
+  */
+{template .YourAccountPortfolioValue}
+  <td style="padding: 0; border-right-style: hidden; border-bottom-style: hidden;">
+    <span>
+      <i>
+        <abbr title="{msg desc="Approx. balance help message in the Your Balance widget in the Sidebar"}
+            Your total balance in {$desc} according to the most recent trade.
+            This value varies according to the market. Be advised that this value doesn't represent
+            your total balance or any commitment to the exchange rate.
+          {/msg}">
+          {msg desc="Approx. balance title in the Your Balance widget in the Sidebar"}Approx. value{/msg}
+        </abbr>
+      </i>
+    </span>
+  </td>
+  <td style="padding: 0; border-bottom-style: hidden; text-align: left;" colspan="2">
+    <i style="font-style: normal;">
+      <span class="bitex-model"
+            data-model-key-list="{$variables}"
+            data-model-formula="{$formula}"
+            data-model-formatter="currency"
+            data-model-formatter-pattern="{$pattern}"
+            data-blink-class="balance-info-blink">
+      </span>
+    </i>
+  </td>
+{/template}
+
+/**
+  * @param id
+  * @param boxes
+  */
+{template .YourAccountSummary}
+  {foreach $box in $boxes}
+    <table class="table table-bordered account-summary-table" >
+      <tbody>
+
+        <tr class='account-summary-broker'>
+          <td colspan="3" style="padding: 0; border-bottom-style: hidden; border-top-style: hidden; ">
+            <strong>{$box['title']}</strong>
+          </td>
+        </tr>
+
+        {foreach $balance_info in $box['balances']}
+          <tr style="border-right-style: hidden; border-bottom-style: hidden;">
+            <td style="padding: 0;border-right-style: hidden;">
+              {$balance_info['currency']}
+            </td>
+
+            <td style="padding: 0; border-right-style: hidden;text-align: left;"{if not $balance_info['showDeposit'] and not $balance_info['showWithdraw']}colspan="2"{/if}>
+              <span class="bitex-model"
+                    data-model-key-list="Balance_{$balance_info['brokerID']}_{$balance_info['accountID']}_{$balance_info['currency']}"
+                    data-model-formula="Balance_{$balance_info['brokerID']}_{$balance_info['accountID']}_{$balance_info['currency']} / 100000000"
+                    data-model-formatter="currency"
+                    data-model-formatter-pattern="{$balance_info['currencyPattern']}"
+                    data-blink-class="balance-info-blink"></span>
+
+              {sp}<abbr title="{msg desc="Unconfirmed deposits"}Unconfirmed deposits{/msg}"
+                        class="bitex-model"
+                        data-model-action="show_element"
+                        data-model-key-list="Position_{$balance_info['brokerID']}_{$balance_info['accountID']}_{$balance_info['currency']}"
+                        data-model-formula="Position_{$balance_info['brokerID']}_{$balance_info['accountID']}_{$balance_info['currency']}">
+                <em>
+                  <span class="bitex-model"
+                        data-model-key-list="Position_{$balance_info['brokerID']}_{$balance_info['accountID']}_{$balance_info['currency']}"
+                        data-model-formula="Position_{$balance_info['brokerID']}_{$balance_info['accountID']}_{$balance_info['currency']} / 100000000"
+                        data-model-formatter="currency"
+                        data-model-formatter-pattern="{$balance_info['currencyPattern']}"
+                        data-blink-class="balance-info-blink"></span>
+                </em>
+              </abbr>
+
+           </td>
+          </tr>
+        {/foreach}
+        <tr id="{$id}_portfolio_value" style="">
+        </tr>
+      </tbody>
+    </table>
+  {/foreach}
+{/template}
